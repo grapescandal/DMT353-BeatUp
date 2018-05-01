@@ -96,6 +96,7 @@ hr{
     width: 150px;
     height: 150px;
     margin: 10px;
+
 }
 .layoutreclist{
     display: flex;
@@ -118,6 +119,7 @@ hr{
 .btnADlayout{
     display: flex;
     flex-flow: row wrap;
+    align-items: center;
     justify-content: center;
 }
 .btnAD{
@@ -381,6 +383,9 @@ nav{
 #playlistbtn:hover{
     background-image: url("img/player/playlist2.png");
 }
+
+
+
 #buttons>button{
     margin-left: 15px;
 }
