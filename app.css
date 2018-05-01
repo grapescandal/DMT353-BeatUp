@@ -555,3 +555,43 @@ span.psw {
        width: 100%;
     }
 }
+
+
+#playlistbtn1{
+    background-color: Transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    
+}
+
+#playlistbtn2{
+    background-color: Transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    
+}
+#playlistbtn3{
+    background-color: Transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    
+}
+#playlistbtn4{
+    background-color: Transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    
+}
+
+.btnplus{
+    width: 15px;
+    height: 15px;
+}
+
+
+
+
