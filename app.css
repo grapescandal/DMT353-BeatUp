@@ -96,6 +96,7 @@ hr{
     width: 150px;
     height: 150px;
     margin: 10px;
+
 }
 .layoutreclist{
     display: flex;
@@ -118,6 +119,7 @@ hr{
 .btnADlayout{
     display: flex;
     flex-flow: row wrap;
+    align-items: center;
     justify-content: center;
 }
 .btnAD{
@@ -381,6 +383,9 @@ nav{
 #playlistbtn:hover{
     background-image: url("img/player/playlist2.png");
 }
+
+
+
 #buttons>button{
     margin-left: 15px;
 }
@@ -550,3 +555,43 @@ span.psw {
        width: 100%;
     }
 }
+
+
+#playlistbtn1{
+    background-color: Transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    
+}
+
+#playlistbtn2{
+    background-color: Transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    
+}
+#playlistbtn3{
+    background-color: Transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    
+}
+#playlistbtn4{
+    background-color: Transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    
+}
+
+.btnplus{
+    width: 15px;
+    height: 15px;
+}
+
+
+
+
