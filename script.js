@@ -189,7 +189,7 @@ function prevSong() {
   currentSong--;
   var absCurrentSong = Math.abs(currentSong);
 
-  if(currentSong < playList.length && !(currentSong < 0)) {
+  if(absCurrentSong < playList.length) {
     mytrack.src = playList[absCurrentSong];
     currentSongCover.src = songCover[absCurrentSong];
     playOrPause();
