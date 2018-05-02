@@ -44,6 +44,8 @@ var isPlayerShow = false;
 
 var btnAD = new Array();
 
+var t;
+
 window.onload = function() {
 
     currentSongCover = document.getElementById('cover');
