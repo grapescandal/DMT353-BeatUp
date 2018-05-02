@@ -189,7 +189,7 @@ function prevSong() {
   currentSong--;
   var absCurrentSong = Math.abs(currentSong);
 
-  if(absCurrentSong < playList.length) {
+  if(currentSong < playList.length && !(currentSong < 0)) {
     mytrack.src = playList[absCurrentSong];
     currentSongCover.src = songCover[absCurrentSong];
     playOrPause();
@@ -383,31 +383,25 @@ function addEventForSongBlock() {
     reclistAll[i].addEventListener('click', function() {
       /*mytrack.src = this.getElementsByTagName('img')[0].alt;
       playOrPause();*/ //Play at once
-      var index = playList.indexOf(this.getElementsByTagName('img')[0].alt);
-      if(index < 0) {
-        playList.push(this.getElementsByTagName('img')[0].alt);
-        songCover.push(this.getElementsByTagName('img')[0].src);
+      playList.push(this.getElementsByTagName('img')[0].alt);
+      songCover.push(this.getElementsByTagName('img')[0].src);
 
-        if(playList.length < 2) {
-          currentSong = 0;
-          mytrack.src = playList[currentSong];
-          currentSongCover.src = songCover[currentSong];
-          playOrPause();
-        }
+      if(playList.length < 2) {
+        currentSong = 0;
+        mytrack.src = playList[currentSong];
+        currentSongCover.src = songCover[currentSong];
+        playOrPause();
+      }
 
-        addToPlaylist(playList);
+      addToPlaylist(playList);
 
-        if(!isPlayerShow) {
-          showPlayer("block");
-          isPlayerShow = true;
-        }
+      if(!isPlayerShow) {
+        showPlayer("block");
+        isPlayerShow = true;
       }
     });
   }
-}
 
-function checkPlayList(songName) {
-  return playList == songName;
 }
 
 function readLog(){
