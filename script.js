@@ -406,19 +406,6 @@ function addEventForSongBlock() {
   }
 }
 
-
-function readLog(){
-	var xhr = new XMLHttpRequest();
-  xhr.open("GET","read.php");
-  xhr.onload = function(){
-      post(xhr.responseText);
-      setAD();
-      addEventForSongBlock();
-  };
-  xhr.onerror = function() {alert("error!");};
-  xhr.send();
-}
-
 function changeADWithBtn(i) {
   clearTimeout(t);
   var x = document.getElementsByClassName("mySlides");
@@ -430,9 +417,21 @@ function changeADWithBtn(i) {
   carousel();
 }
 
+function readLog(){
+	var xhr = new XMLHttpRequest();
+  xhr.open("GET","home.html");
+  xhr.onload = function(){
+      post(xhr.responseText);
+      setAD();
+      addEventForSongBlock();
+  };
+  xhr.onerror = function() {alert("error!");};
+  xhr.send();
+}
+
 function NewRelease(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","NewRelease.php");
+    xhr.open("GET","NewRelease.html");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
@@ -442,7 +441,7 @@ function NewRelease(){
 }
 function Moods(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","Moods.php");
+    xhr.open("GET","Moods.html");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
@@ -452,7 +451,7 @@ function Moods(){
 }
 function Charts(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","Charts.php");
+    xhr.open("GET","Charts.html");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
