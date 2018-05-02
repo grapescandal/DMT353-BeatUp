@@ -430,7 +430,7 @@ function changeADWithBtn(i) {
 
 function readLog(){
 	var xhr = new XMLHttpRequest();
-  xhr.open("GET","home.html");
+  xhr.open("GET","home.php");
   xhr.onload = function(){
       post(xhr.responseText);
       setAD();
@@ -442,7 +442,7 @@ function readLog(){
 
 function NewRelease(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","NewRelease.html");
+    xhr.open("GET","NewRelease.php");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
@@ -452,7 +452,7 @@ function NewRelease(){
 }
 function Moods(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","Moods.html");
+    xhr.open("GET","Moods.php");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
@@ -462,7 +462,7 @@ function Moods(){
 }
 function Charts(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","Charts.html");
+    xhr.open("GET","Charts.php");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
