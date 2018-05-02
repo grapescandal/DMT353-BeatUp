@@ -44,7 +44,9 @@ var isPlayerShow = false;
 
 var btnAD = new Array();
 
+//timer
 var t;
+var updateTime;
 
 window.onload = function() {
 
@@ -186,33 +188,29 @@ function prevSong() {
 
 function playOrPause() {
     if(!mytrack.paused && !mytrack.ended){
-        mytrack.pause();
-        playbtn.style.backgroundImage = 'url("img/player/play-button.png")';
-        playbtn.id = "playbtn";
-        window.clearInterval(updateTime);
+      pause();
     } else {
-      mytrack.play();
-      togglePlay();
+      play();
     }
 }
 
-// function volumeUp() {
-//     mytrack.volume += 0.1;
 
-//     mytrack.onvolumechange = function() {
-
-//     }
-// }
-
-// function volumeDown() {
-//     mytrack.volume -= 0.1;
-// }
-
-function togglePlay() {
+function play() {
+  mytrack.play();
   playbtn.style.backgroundImage = 'url("img/player/pause.png")';
   playbtn.id = "pausebtn";
   defaulBarKK.style.backgroundColor = "rgba(158, 158, 158, 0.5)";
-  updateTime = setInterval(update,500);
+  updateTime = setInterval(update, 500);
+}
+
+function pause() {
+  mytrack.pause();
+  playbtn.style.backgroundImage = 'url("img/player/play-button.png")';
+  playbtn.id = "playbtn";
+
+  if(updateTime !== null) {
+    window.clearInterval(updateTime);
+  }
 }
 
 function stop() {
@@ -408,7 +406,7 @@ function addEventForSongBlock() {
       currentSong = 0;
       mytrack.src = playList[currentSong];
       currentSongCover.src = songCover[currentSong];
-      playOrPause();
+      pause();
       if(!isPlayerShow) {
         showPlayer("block");
         isPlayerShow = true;
@@ -443,7 +441,7 @@ function readLog(){
 function NewRelease(){
 	var xhr = new XMLHttpRequest();
     xhr.open("GET","NewRelease.php");
-    xhr.onload = function(){
+    xhr.onload = function() {
         postMsg(xhr.responseText);
         addEventForSongBlock();
     };
