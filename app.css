@@ -562,11 +562,31 @@ span.psw {
     border: none;
     width: 15px;
     height: 15px;
-
+   
+    align-items: right;
+    justify-content: right ;
 }
 
 
 .btnplus{
+    
     width: 15px;
+    
     height: 15px;
+    
+}
+
+
+
+#prevbtn1{
+    background-color:Transparent;
+    border: none;
+    height: 2%;
+    width: 10%;
+    margin-left: 6%;
+    align-items: center;
+    background-image: url("img/plus.png");
+    background-size: 15px ;
+    background-repeat: no-repeat;
+    background-position: center;
 }
