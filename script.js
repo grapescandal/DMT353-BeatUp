@@ -44,8 +44,6 @@ var isPlayerShow = false;
 
 var btnAD = new Array();
 
-var t;
-
 window.onload = function() {
 
     currentSongCover = document.getElementById('cover');
@@ -341,7 +339,8 @@ var myIndex = 0;
 function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
-    for (var i = 0; i < x.length; i++) {
+    var length = x.length;
+    for (var i = 0; i < length; i++) {
        x[i].style.display = "none";
        btnAD[i].className = "btnAD";
     }
@@ -376,8 +375,9 @@ function setAD() {
 function addEventForSongBlock() {
   //Add Event for song img
   reclistAll = document.querySelectorAll(".detail");
+  var reclistLength = reclistAll.length;
 
-  for(var i = 0; i < reclistAll.length; i++) {
+  for(var i = 0; i < reclistLength; i++) {
     reclistAll[i].addEventListener('click', function() {
       /*mytrack.src = this.getElementsByTagName('img')[0].alt;
       playOrPause();*/ //Play at once
@@ -420,7 +420,8 @@ function readLog(){
 function changeADWithBtn(i) {
   clearTimeout(t);
   var x = document.getElementsByClassName("mySlides");
-  for (j = 0; j < x.length; j++) {
+  var adLength = x.length;
+  for (j = 0; j < adLength; j++) {
      x[j].style.display = "none";
   }
   x[i].style.display = "block";
