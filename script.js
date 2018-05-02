@@ -186,15 +186,13 @@ function nextSong() {
 }
 
 function prevSong() {
-  currentSong--;
-  var absCurrentSong = Math.abs(currentSong);
-
-  if(absCurrentSong < playList.length) {
-    mytrack.src = playList[absCurrentSong];
-    currentSongCover.src = songCover[absCurrentSong];
-    playOrPause();
+  if(currentSong == 0) {
+    currentSong = playList.length - 1;
   } else {
-    currentSong = (absCurrentSong % playList.length) + 1;
+    currentSong--;
+  }
+
+  if(currentSong < playList.length) {
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
     playOrPause();
