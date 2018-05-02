@@ -147,21 +147,6 @@ function showPlayer(string) {
   setVolume();
 }
 
-function addToPlaylist(playList) {
-  openNav();
-  var playlistParent = document.getElementById("mySidenav");
-  for (var i = 0; i < playList.length; i++) {
-    var playlistChild = document.createElement("a");
-    playlistChild.id = i;
-    playlistChild.className = "playListBlock";
-    playlistChild.text = getSongName(playList[i]);
-    playlistChild.addEventListener('click', function() {
-      changeCurrentSong(playlistChild.id);
-    });
-  }
-  playlistParent.appendChild(playlistChild);
-}
-
 function changeCurrentSong(songIndex){
   mytrack.pause();
   currentSong = songIndex;
@@ -186,15 +171,13 @@ function nextSong() {
 }
 
 function prevSong() {
-  currentSong--;
-  var absCurrentSong = Math.abs(currentSong);
-
-  if(currentSong < playList.length && !(currentSong < 0)) {
-    mytrack.src = playList[absCurrentSong];
-    currentSongCover.src = songCover[absCurrentSong];
-    playOrPause();
+  if(currentSong == 0) {
+    currentSong = playList.length - 1;
   } else {
-    currentSong = (absCurrentSong % playList.length) + 1;
+    currentSong--;
+  }
+
+  if(currentSong < playList.length) {
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
     playOrPause();
@@ -343,7 +326,8 @@ var myIndex = 0;
 function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
-    for (var i = 0; i < x.length; i++) {
+    var length = x.length;
+    for (var i = 0; i < length; i++) {
        x[i].style.display = "none";
        btnAD[i].className = "btnAD";
     }
@@ -375,38 +359,78 @@ function setAD() {
   carousel();
 }
 
+
+function addToPlayList(element) {
+  var index = playList.indexOf(element.alt);
+  if(index < 0) {
+    playList.push(element.alt);
+    songCover.push(element.src);
+
+    addToPlaylistNav(playList);
+  }
+}
+
+function addToPlaylistNav(playList) {
+  openNav();
+  var playlistParent = document.getElementById("mySidenav");
+  for (var i = 0; i < playList.length; i++) {
+    var playlistChild = document.createElement("a");
+    playlistChild.id = i;
+    playlistChild.className = "playListBlock";
+    playlistChild.text = getSongName(playList[i]);
+    playlistChild.addEventListener('click', function() {
+      changeCurrentSong(playlistChild.id);
+    });
+  }
+  playlistParent.appendChild(playlistChild);
+}
+
 function addEventForSongBlock() {
   //Add Event for song img
   reclistAll = document.querySelectorAll(".detail");
+  var reclistLength = reclistAll.length;
 
-  for(var i = 0; i < reclistAll.length; i++) {
-    reclistAll[i].addEventListener('click', function() {
-      /*mytrack.src = this.getElementsByTagName('img')[0].alt;
-      playOrPause();*/ //Play at once
-      playList.push(this.getElementsByTagName('img')[0].alt);
-      songCover.push(this.getElementsByTagName('img')[0].src);
+  for(var i = 0; i < reclistLength; i++) {
 
-      if(playList.length < 2) {
-        currentSong = 0;
-        mytrack.src = playList[currentSong];
-        currentSongCover.src = songCover[currentSong];
-        playOrPause();
-      }
-
-      addToPlaylist(playList);
+    reclistAll[i].childNodes[1].addEventListener('click', function() {
+      mytrack.src = this.alt;
+      currentSongCover.src = this.src;
+      playOrPause();
 
       if(!isPlayerShow) {
         showPlayer("block");
         isPlayerShow = true;
       }
     });
-  }
 
+    reclistAll[i].childNodes[3].childNodes[3].addEventListener('click', function() {
+      addToPlayList(this.parentNode.parentNode.childNodes[1]);
+      currentSong = 0;
+      mytrack.src = playList[currentSong];
+      currentSongCover.src = songCover[currentSong];
+      playOrPause();
+      if(!isPlayerShow) {
+        showPlayer("block");
+        isPlayerShow = true;
+      }
+    });
+  }
+}
+
+function changeADWithBtn(i) {
+  clearTimeout(t);
+  var x = document.getElementsByClassName("mySlides");
+  var adLength = x.length;
+  for (j = 0; j < adLength; j++) {
+     x[j].style.display = "none";
+  }
+  x[i].style.display = "block";
+  carousel();
 }
 
 function readLog(){
 	var xhr = new XMLHttpRequest();
-  xhr.open("GET","read.php");
+  xhr.open("GET","home.html");
   xhr.onload = function(){
       post(xhr.responseText);
       setAD();
@@ -416,19 +440,9 @@ function readLog(){
   xhr.send();
 }
 
-function changeADWithBtn(i) {
-  clearTimeout(t);
-  var x = document.getElementsByClassName("mySlides");
-  for (j = 0; j < x.length; j++) {
-     x[j].style.display = "none";
-  }
-  x[i].style.display = "block";
-  carousel();
-}
-
 function NewRelease(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","NewRelease.php");
+    xhr.open("GET","NewRelease.html");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
@@ -438,7 +452,7 @@ function NewRelease(){
 }
 function Moods(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","Moods.php");
+    xhr.open("GET","Moods.html");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
@@ -448,7 +462,7 @@ function Moods(){
 }
 function Charts(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","Charts.php");
+    xhr.open("GET","Charts.html");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
