@@ -44,7 +44,9 @@ var isPlayerShow = false;
 
 var btnAD = new Array();
 
+//timer
 var t;
+var updateTime;
 
 window.onload = function() {
 
@@ -186,33 +188,29 @@ function prevSong() {
 
 function playOrPause() {
     if(!mytrack.paused && !mytrack.ended){
-        mytrack.pause();
-        playbtn.style.backgroundImage = 'url("img/player/play-button.png")';
-        playbtn.id = "playbtn";
-        window.clearInterval(updateTime);
+      pause();
     } else {
-      mytrack.play();
-      togglePlay();
+      play();
     }
 }
 
-// function volumeUp() {
-//     mytrack.volume += 0.1;
 
-//     mytrack.onvolumechange = function() {
-
-//     }
-// }
-
-// function volumeDown() {
-//     mytrack.volume -= 0.1;
-// }
-
-function togglePlay() {
+function play() {
+  mytrack.play();
   playbtn.style.backgroundImage = 'url("img/player/pause.png")';
   playbtn.id = "pausebtn";
   defaulBarKK.style.backgroundColor = "rgba(158, 158, 158, 0.5)";
-  updateTime = setInterval(update,500);
+  updateTime = setInterval(update, 500);
+}
+
+function pause() {
+  mytrack.pause();
+  playbtn.style.backgroundImage = 'url("img/player/play-button.png")';
+  playbtn.id = "playbtn";
+
+  if(updateTime !== null) {
+    window.clearInterval(updateTime);
+  }
 }
 
 function stop() {
@@ -408,7 +406,7 @@ function addEventForSongBlock() {
       currentSong = 0;
       mytrack.src = playList[currentSong];
       currentSongCover.src = songCover[currentSong];
-      playOrPause();
+      pause();
       if(!isPlayerShow) {
         showPlayer("block");
         isPlayerShow = true;
@@ -430,7 +428,7 @@ function changeADWithBtn(i) {
 
 function readLog(){
 	var xhr = new XMLHttpRequest();
-  xhr.open("GET","home.html");
+  xhr.open("GET","home.php");
   xhr.onload = function(){
       post(xhr.responseText);
       setAD();
@@ -442,8 +440,8 @@ function readLog(){
 
 function NewRelease(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","NewRelease.html");
-    xhr.onload = function(){
+    xhr.open("GET","NewRelease.php");
+    xhr.onload = function() {
         postMsg(xhr.responseText);
         addEventForSongBlock();
     };
@@ -452,7 +450,7 @@ function NewRelease(){
 }
 function Moods(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","Moods.html");
+    xhr.open("GET","Moods.php");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
@@ -462,7 +460,7 @@ function Moods(){
 }
 function Charts(){
 	var xhr = new XMLHttpRequest();
-    xhr.open("GET","Charts.html");
+    xhr.open("GET","Charts.php");
     xhr.onload = function(){
         postMsg(xhr.responseText);
         addEventForSongBlock();
