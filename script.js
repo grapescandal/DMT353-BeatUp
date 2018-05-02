@@ -147,21 +147,6 @@ function showPlayer(string) {
   setVolume();
 }
 
-function addToPlaylist(playList) {
-  openNav();
-  var playlistParent = document.getElementById("mySidenav");
-  for (var i = 0; i < playList.length; i++) {
-    var playlistChild = document.createElement("a");
-    playlistChild.id = i;
-    playlistChild.className = "playListBlock";
-    playlistChild.text = getSongName(playList[i]);
-    playlistChild.addEventListener('click', function() {
-      changeCurrentSong(playlistChild.id);
-    });
-  }
-  playlistParent.appendChild(playlistChild);
-}
-
 function changeCurrentSong(songIndex){
   mytrack.pause();
   currentSong = songIndex;
@@ -374,33 +359,59 @@ function setAD() {
   carousel();
 }
 
+
+function addToPlayList(element) {
+  var index = playList.indexOf(element.alt);
+  if(index < 0) {
+    playList.push(element.alt);
+    songCover.push(element.src);
+
+    addToPlaylistNav(playList);
+  }
+}
+
+function addToPlaylistNav(playList) {
+  openNav();
+  var playlistParent = document.getElementById("mySidenav");
+  for (var i = 0; i < playList.length; i++) {
+    var playlistChild = document.createElement("a");
+    playlistChild.id = i;
+    playlistChild.className = "playListBlock";
+    playlistChild.text = getSongName(playList[i]);
+    playlistChild.addEventListener('click', function() {
+      changeCurrentSong(playlistChild.id);
+    });
+  }
+  playlistParent.appendChild(playlistChild);
+}
+
 function addEventForSongBlock() {
   //Add Event for song img
   reclistAll = document.querySelectorAll(".detail");
   var reclistLength = reclistAll.length;
 
   for(var i = 0; i < reclistLength; i++) {
-    reclistAll[i].addEventListener('click', function() {
-      /*mytrack.src = this.getElementsByTagName('img')[0].alt;
-      playOrPause();*/ //Play at once
-      var index = playList.indexOf(this.getElementsByTagName('img')[0].alt);
-      if(index < 0) {
-        playList.push(this.getElementsByTagName('img')[0].alt);
-        songCover.push(this.getElementsByTagName('img')[0].src);
 
-        if(playList.length < 2) {
-          currentSong = 0;
-          mytrack.src = playList[currentSong];
-          currentSongCover.src = songCover[currentSong];
-          playOrPause();
-        }
+    reclistAll[i].childNodes[1].addEventListener('click', function() {
+      mytrack.src = this.alt;
+      currentSongCover.src = this.src;
+      playOrPause();
 
-        addToPlaylist(playList);
+      if(!isPlayerShow) {
+        showPlayer("block");
+        isPlayerShow = true;
+      }
+    });
 
-        if(!isPlayerShow) {
-          showPlayer("block");
-          isPlayerShow = true;
-        }
+    reclistAll[i].childNodes[3].childNodes[3].addEventListener('click', function() {
+      addToPlayList(this.parentNode.parentNode.childNodes[1]);
+      currentSong = 0;
+      mytrack.src = playList[currentSong];
+      currentSongCover.src = songCover[currentSong];
+      playOrPause();
+      if(!isPlayerShow) {
+        showPlayer("block");
+        isPlayerShow = true;
       }
     });
   }
