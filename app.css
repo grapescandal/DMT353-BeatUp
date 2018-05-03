@@ -89,15 +89,18 @@ hr{
 .detail:hover{
     text-align: center;
     color: white;
-    cursor: pointer;
 }
 .reclist{
     background-color: white;
     width: 150px;
     height: 150px;
     margin: 10px;
-
 }
+
+.reclist:hover{
+    cursor: pointer;
+}
+
 .layoutreclist{
     display: flex;
     flex-flow: row wrap;
@@ -202,6 +205,9 @@ input{
 }
 .song{
     font-family: 'Prompt', sans-serif;
+}
+.song:hover {
+  user-select: none;
 }
 span{
     font-family: 'Prompt', sans-serif;
