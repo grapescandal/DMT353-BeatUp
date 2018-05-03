@@ -217,7 +217,6 @@ span{
     font-family: 'Prompt', sans-serif;
 }
 .playListBlock {
-  position: absolute;
   cursor: pointer;
   user-select: none;
   text-align: left;
