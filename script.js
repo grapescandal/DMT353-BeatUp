@@ -5,7 +5,6 @@ mytrack.loop = false;
 var currentSong = 0;
 var playList = new Array();
 var playListEnded;
-var draggingChild;
 
 //All button
 var playbtn = document.getElementById('playbtn');
@@ -381,8 +380,6 @@ function addToPlaylistNav(playList) {
     playlistChild.text = getSongName(playList[i]);
     var rect = playlistChild.getBoundingClientRect();
     console.log(rect.top, rect.right, rect.bottom, rect.left);
-    playlistChild.addEventListener('mousedown', dragChild, false);
-    window.addEventListener('mouseup', dropChild, false);
     playlistChild.addEventListener('click', function() {
     changeCurrentSong(playlistChild.id);
   }, true);
@@ -403,21 +400,6 @@ function clearPlayListNav() {
   while(playlistParent.firstChild) {
     playlistParent.removeChild(playlistParent.firstChild);
   }
-}
-
-function dragChild(e, child) {
-  e = e || window.event;
-  draggingChild = e.target || e.srcElement;
-  window.addEventListener('mousemove', childMove, true);
-}
-
-function dropChild(e) {
-  window.removeEventListener('mousemove', childMove, true);
-}
-
-function childMove(e) {
-  draggingChild.style.position = "absolute";
-  draggingChild.style.top = e.clientY + 'px';
 }
 
 //Advertise
