@@ -343,9 +343,10 @@ function showPlayer(string) {
 }
 
 function getSongName(songName) {
-  var indexSongName = songName.search("Music");
-  var songName = songName.substring(indexSongName + 6);
-  return songName;
+  var newSongName = songName.replace('Music/', '');
+  newSongName = newSongName.replace('.mp3', '');
+
+  return newSongName;
 }
 
 function changeCurrentSong(songIndex){

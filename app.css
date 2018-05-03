@@ -209,6 +209,7 @@ span{
 .playListBlock {
   cursor: pointer;
   user-select: none;
+  text-align: left;
 }
 /* bac{
     background-color: rgba(158, 158, 158, 0.5)
@@ -383,8 +384,6 @@ nav{
 #playlistbtn:hover{
     background-image: url("img/player/playlist2.png");
 }
-
-
 
 #buttons>button{
     margin-left: 15px;
