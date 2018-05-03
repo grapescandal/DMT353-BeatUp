@@ -6,48 +6,53 @@ var currentSong = 0;
 var playList = new Array();
 var playListEnded;
 
+//All button
 var playbtn = document.getElementById('playbtn');
 var mutebtn = document.getElementById('mutebtn');
 var stopbtn = document.getElementById('stopbtn');
 var nextbtn = document.getElementById('nextbtn');
 var prevbtn = document.getElementById('prevbtn');
-// var volumeupbtn = document.getElementById('volumeupbtn');
-// var volumedownbtn = document.getElementById('volumedownbtn');
 var stopbtn = document.getElementById('stopbtn');
-var getWidth = document.getElementById("defaulBar").clientWidth;
 
-var getVolWidth;
-
+//Player
+var player = document.getElementById('wrapper');
+var playerSongName = document.getElementById('song');
 var duration = document.getElementById('fullDuration');
 var currentTime = document.getElementById('currentTime');
-
-var playerSongName = document.getElementById('song');
 var songCover = new Array();
 var currentSongCover;
 var minutes;
 var seconds;
+var isPlayerShow = false;
 
+//Bar
+var getWidth = document.getElementById("defaulBar").clientWidth;
+var getVolWidth;
 var barsize = getWidth;
 var barsizeVol;
 var resize = false;
-
 var bar = document.getElementById('defaulBar');
 var barVol = document.getElementById('volumeBar');
 var progressBar = document.getElementById('progressBar');
 var progressVolBar = document.getElementById('progressvolumeBar');
 var defaulBarKK = document.getElementById('defaulBar');
 
-var player = document.getElementById('wrapper');
+//All Musicbox
 var reclistAll;
 
-var isPlayerShow = false;
-
+//Advertise
 var btnAD = new Array();
+var myIndex = 0;
+
+// Get the modal
+var modal = document.getElementById('id01');
+var modal2 = document.getElementById('id02');
 
 //timer
 var t;
 var updateTime;
 
+//window
 window.onload = function() {
 
     currentSongCover = document.getElementById('cover');
@@ -87,7 +92,6 @@ window.onload = function() {
     });
 }
 
-
 window.onresize =  function() {
     //Bar
     var px = progressBar.style.width.search("px");
@@ -115,76 +119,16 @@ document.body.onkeydown = function(e) {
         playOrPause();
     }
 }
-
-function setVolume() {
-  getVolWidth = document.getElementById("volumeBar").clientWidth;
-  barsizeVol = getVolWidth;
-  mytrack.volume = 0.5;
-  progressVolBar.style.width = mytrack.volume * barsizeVol + 'px';
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    if (event.target == modal2) {
+        modal2.style.display = "none";
+    }
 }
-
-function checkDuration(songDuration) {
-  var indexSongName = mytrack.src.search("Music");
-  var songName = mytrack.src.substring(indexSongName + 6);
-  playerSongName.innerHTML = songName.replace(/%20/g, " ");
-
-  if(isNaN(songDuration)) {
-    minutes = 0;
-    seconds = pad(0);
-  } else {
-    minutes = parseInt(songDuration/60);
-    seconds = pad(parseInt(songDuration%60));
-  }
-  duration.innerHTML = minutes + ':' + seconds;
-}
-
-function getSongName(songName) {
-  var indexSongName = songName.search("Music");
-  var songName = songName.substring(indexSongName + 6);
-  return songName;
-}
-
-function showPlayer(string) {
-  player.style.display = string;
-  setVolume();
-}
-
-function changeCurrentSong(songIndex){
-  mytrack.pause();
-  currentSong = songIndex;
-  mytrack.src = playList[currentSong];
-  currentSongCover.src = songCover[currentSong];
-  playOrPause();
-}
-
-function nextSong() {
-  currentSong++;
-
-  if(currentSong < playList.length) {
-    mytrack.src = playList[currentSong];
-    currentSongCover.src = songCover[currentSong];
-    playOrPause();
-  } else {
-    currentSong = Math.abs(currentSong) % playList.length;
-    mytrack.src = playList[currentSong];
-    currentSongCover.src = songCover[currentSong];
-    playOrPause();
-  }
-}
-
-function prevSong() {
-  if(currentSong == 0) {
-    currentSong = playList.length - 1;
-  } else {
-    currentSong--;
-  }
-
-  if(currentSong < playList.length) {
-    mytrack.src = playList[currentSong];
-    currentSongCover.src = songCover[currentSong];
-    playOrPause();
-  }
-}
+//Button
 
 function playOrPause() {
     if(!mytrack.paused && !mytrack.ended){
@@ -193,7 +137,6 @@ function playOrPause() {
       play();
     }
 }
-
 
 function play() {
   mytrack.play();
@@ -225,6 +168,7 @@ function stop() {
         window.clearInterval(updateTime);
     }
 }
+
 function muteOrUnmute() {
     if(mytrack.muted == true){
         mytrack.muted =false;
@@ -238,6 +182,36 @@ function muteOrUnmute() {
     }
 }
 
+function nextSong() {
+  currentSong++;
+
+  if(currentSong < playList.length) {
+    mytrack.src = playList[currentSong];
+    currentSongCover.src = songCover[currentSong];
+    playOrPause();
+  } else {
+    currentSong = Math.abs(currentSong) % playList.length;
+    mytrack.src = playList[currentSong];
+    currentSongCover.src = songCover[currentSong];
+    playOrPause();
+  }
+}
+
+function prevSong() {
+  if(currentSong == 0) {
+    currentSong = playList.length - 1;
+  } else {
+    currentSong--;
+  }
+
+  if(currentSong < playList.length) {
+    mytrack.src = playList[currentSong];
+    currentSongCover.src = songCover[currentSong];
+    playOrPause();
+  }
+}
+
+//Bar
 function update() {
     if(!mytrack.ended){
         var playedMinutes = parseInt(mytrack.currentTime / 60);
@@ -274,6 +248,32 @@ function update() {
     }
 }
 
+function checkDuration(songDuration) {
+  var indexSongName = mytrack.src.search("Music");
+  var songName = mytrack.src.substring(indexSongName + 6);
+  playerSongName.innerHTML = songName.replace(/%20/g, " ");
+
+  if(isNaN(songDuration)) {
+    minutes = 0;
+    seconds = pad(0);
+  } else {
+    minutes = parseInt(songDuration/60);
+    seconds = pad(parseInt(songDuration%60));
+  }
+  duration.innerHTML = minutes + ':' + seconds;
+}
+
+function pad(d) {
+    return (d < 10) ? '0'+ d.toString() : d.toString();
+  }
+
+function setVolume() {
+  getVolWidth = document.getElementById("volumeBar").clientWidth;
+  barsizeVol = getVolWidth;
+  mytrack.volume = 0.5;
+  progressVolBar.style.width = mytrack.volume * barsizeVol + 'px';
+}
+
 function clickedBar(e) {
     if(!mytrack.ended){
         var mouseX = e.pageX - bar.offsetLeft;
@@ -290,99 +290,16 @@ function clickedVolBar(k) {
     mytrack.volume = newVol;
 }
 
-function pad(d) {
-    return (d < 10) ? '0'+ d.toString() : d.toString();
-}
-
-// player
-// Get the modal
-var modal = document.getElementById('id01');
-var modal2 = document.getElementById('id02');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-    if (event.target == modal2) {
-        modal2.style.display = "none";
-    }
-}
-
-// playlist
+// playlist Nav
 function openNav() {
     document.getElementById("mySidenav").style.width = "20%";
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-}
-
-var myIndex = 0;
-// carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    var length = x.length;
-    for (var i = 0; i < length; i++) {
-       x[i].style.display = "none";
-       btnAD[i].className = "btnAD";
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    btnAD[myIndex-1].className = "btnADCurrent";
-    t = setTimeout(carousel, 2000); // Change image every 2 seconds
-}
-
-function setAD() {
-  clearTimeout(t);
-  for(var i = 0; i < 3; i++) {
-    btnAD[i] = document.getElementById("btnAD" + (i + 1));
   }
 
-  btnAD[0].addEventListener('click', function() {
-    myIndex = 0;
-    changeADWithBtn(0);
-  }, false);
-  btnAD[1].addEventListener('click', function() {
-    myIndex = 1;
-    changeADWithBtn(1);
-  }, false);
-  btnAD[2].addEventListener('click', function() {
-    myIndex = 2;
-    changeADWithBtn(2);
-  }, false);
-  carousel();
-}
-
-
-function addToPlayList(element) {
-  var index = playList.indexOf(element.alt);
-  if(index < 0) {
-    playList.push(element.alt);
-    songCover.push(element.src);
-
-    addToPlaylistNav(playList);
-  }
-}
-
-function addToPlaylistNav(playList) {
-  openNav();
-  var playlistParent = document.getElementById("mySidenav");
-  for (var i = 0; i < playList.length; i++) {
-    var playlistChild = document.createElement("a");
-    playlistChild.id = i;
-    playlistChild.className = "playListBlock";
-    playlistChild.text = getSongName(playList[i]);
-    playlistChild.addEventListener('click', function() {
-      changeCurrentSong(playlistChild.id);
-    });
-  }
-  playlistParent.appendChild(playlistChild);
-}
-
+//Play and PlayList
 function addEventForSongBlock() {
   //Add Event for song img
   reclistAll = document.querySelectorAll(".detail");
@@ -415,6 +332,87 @@ function addEventForSongBlock() {
   }
 }
 
+function showPlayer(string) {
+  player.style.display = string;
+  setVolume();
+}
+
+function getSongName(songName) {
+  var indexSongName = songName.search("Music");
+  var songName = songName.substring(indexSongName + 6);
+  return songName;
+}
+
+function changeCurrentSong(songIndex){
+  mytrack.pause();
+  currentSong = songIndex;
+  mytrack.src = playList[currentSong];
+  currentSongCover.src = songCover[currentSong];
+  playOrPause();
+}
+
+function addToPlayList(element) {
+  var index = playList.indexOf(element.alt);
+  if(index < 0) {
+    playList.push(element.alt);
+    songCover.push(element.src);
+
+    addToPlaylistNav(playList);
+  }
+}
+
+function addToPlaylistNav(playList) {
+  openNav();
+  var playlistParent = document.getElementById("mySidenav");
+  for (var i = 0; i < playList.length; i++) {
+    var playlistChild = document.createElement("a");
+    playlistChild.id = i;
+    playlistChild.className = "playListBlock";
+    playlistChild.text = getSongName(playList[i]);
+    playlistChild.addEventListener('click', function() {
+    changeCurrentSong(playlistChild.id);
+    });
+  }
+  playlistParent.appendChild(playlistChild);
+}
+
+//Advertise
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    var length = x.length;
+    for (var i = 0; i < length; i++) {
+       x[i].style.display = "none";
+       btnAD[i].className = "btnAD";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    btnAD[myIndex-1].className = "btnADCurrent";
+    t = setTimeout(carousel, 2000); // Change image every 2 seconds
+  }
+
+function setAD() {
+  clearTimeout(t);
+  for(var i = 0; i < 3; i++) {
+    btnAD[i] = document.getElementById("btnAD" + (i + 1));
+  }
+
+  btnAD[0].addEventListener('click', function() {
+    myIndex = 0;
+    changeADWithBtn(0);
+  }, false);
+  btnAD[1].addEventListener('click', function() {
+    myIndex = 1;
+    changeADWithBtn(1);
+  }, false);
+  btnAD[2].addEventListener('click', function() {
+    myIndex = 2;
+    changeADWithBtn(2);
+  }, false);
+  carousel();
+}
+
 function changeADWithBtn(i) {
   clearTimeout(t);
   var x = document.getElementsByClassName("mySlides");
@@ -426,6 +424,7 @@ function changeADWithBtn(i) {
   carousel();
 }
 
+//Ajax
 function readLog(){
 	var xhr = new XMLHttpRequest();
   xhr.open("GET","home.php");
@@ -437,7 +436,6 @@ function readLog(){
   xhr.onerror = function() {alert("error!");};
   xhr.send();
 }
-
 function NewRelease(){
 	var xhr = new XMLHttpRequest();
     xhr.open("GET","NewRelease.php");
