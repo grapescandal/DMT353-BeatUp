@@ -221,14 +221,21 @@ span{
   user-select: none;
   text-align: left;
   white-space: nowrap;
+}
+.playListBlockHover {
+  display: block;
+  cursor: pointer;
+  user-select: none;
+  text-align: left;
+  white-space: nowrap;
   /* Starting position */
-  -moz-transform:translateX(100%);
-  -webkit-transform:translateX(100%);
-  transform:translateX(100%);
+  -moz-transform:translateX(50%);
+  -webkit-transform:translateX(50%);
+  transform:translateX(50%);
   /* Apply animation to this element */
-  -moz-animation: example1 15s linear infinite;
-  -webkit-animation: example1 15s linear infinite;
-  animation: example1 15s linear infinite;
+  -moz-animation: example1 5s linear infinite;
+  -webkit-animation: example1 5s linear infinite;
+  animation: example1 5s linear infinite;
 }
 /* bac{
     background-color: rgba(158, 158, 158, 0.5)
@@ -595,22 +602,10 @@ span.psw {
 } */
 /* Move it (define the animation) */
 @-moz-keyframes example1 {
- 0%   { -moz-transform: translateX(100%); }
- 100% { -moz-transform: translateX(-100%); }
+ 0%   { -moz-transform: translateX(70%); }
+ 100% { -moz-transform: translateX(-70%); }
 }
 @-webkit-keyframes example1 {
- 0%   { -webkit-transform: translateX(100%); }
- 100% { -webkit-transform: translateX(-100%); }
-}
-@keyframes example1 {
- 0%   {
- -moz-transform: translateX(100%); /* Firefox bug fix */
- -webkit-transform: translateX(100%); /* Firefox bug fix */
- transform: translateX(100%);
- }
- 100% {
- -moz-transform: translateX(-100%); /* Firefox bug fix */
- -webkit-transform: translateX(-100%); /* Firefox bug fix */
- transform: translateX(-100%);
- }
+ 0%   { -webkit-transform: translateX(70%); }
+ 100% { -webkit-transform: translateX(-70%); }
 }

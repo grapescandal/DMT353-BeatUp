@@ -374,17 +374,24 @@ function addToPlaylistNav(playList) {
   openNav();
   var playlistParent = document.getElementById("playlistgrid");
   for (var i = 0; i < playList.length; i++) {
+    var playlistChildBlock = document.createElement("div");
     var playlistChild = document.createElement("a");
+    playlistChildBlock.id = "block" + i;
     playlistChild.id = i;
     playlistChild.className = "playListBlock";
     playlistChild.text = getSongName(playList[i]);
-    var rect = playlistChild.getBoundingClientRect();
-    console.log(rect.top, rect.right, rect.bottom, rect.left);
     playlistChild.addEventListener('click', function() {
     changeCurrentSong(playlistChild.id);
   }, true);
+    playlistChildBlock.appendChild(playlistChild);
+    playlistChildBlock.addEventListener('mouseenter', function() {
+      playlistChild.className = "playListBlockHover";
+    });
+    playlistChildBlock.addEventListener('mouseleave', function() {
+      playlistChild.className = "playListBlock";
+    });
   }
-  playlistParent.appendChild(playlistChild);
+  playlistParent.appendChild(playlistChildBlock);
 }
 
 function clearPlayList() {
