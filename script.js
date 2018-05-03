@@ -5,6 +5,7 @@ mytrack.loop = false;
 var currentSong = 0;
 var playList = new Array();
 var playListEnded;
+var draggingChild;
 
 //All button
 var playbtn = document.getElementById('playbtn');
@@ -322,13 +323,10 @@ function addEventForSongBlock() {
       }
     });
 
+    //add to playlist
     reclistAll[i].childNodes[3].childNodes[3].addEventListener('click', function() {
       addToPlayList(this.parentNode.parentNode.childNodes[1]);
-      if(playList.length < 2) {
-        currentSong = 0;
-        mytrack.src = playList[currentSong];
-        currentSongCover.src = songCover[currentSong];
-      }
+
       if(!isPlayerShow) {
         showPlayer("block");
         isPlayerShow = true;
@@ -365,19 +363,27 @@ function addToPlayList(element) {
 
     addToPlaylistNav(playList);
   }
+
+  if(playList.length < 2 && index < 0) {
+    currentSong = 0;
+    mytrack.src = playList[currentSong];
+    currentSongCover.src = songCover[currentSong];
+  }
 }
 
 function addToPlaylistNav(playList) {
   openNav();
-  var playlistParent = document.getElementById("mySidenav");
+  var playlistParent = document.getElementById("playlistgrid");
   for (var i = 0; i < playList.length; i++) {
     var playlistChild = document.createElement("a");
     playlistChild.id = i;
     playlistChild.className = "playListBlock";
     playlistChild.text = getSongName(playList[i]);
+    playlistChild.addEventListener('mousedown', dragChild, false);
+    window.addEventListener('mouseup', dropChild, false);
     playlistChild.addEventListener('click', function() {
     changeCurrentSong(playlistChild.id);
-    });
+  }, true);
   }
   playlistParent.appendChild(playlistChild);
 }
@@ -391,10 +397,26 @@ function clearSongCover() {
 }
 
 function clearPlayListNav() {
-  var playlistParent = document.getElementById("mySidenav");
-  while(playlistParent.childNodes[4]) {
-    playlistParent.removeChild(playlistParent.childNodes[4]);
+  var playlistParent = document.getElementById("playlistgrid");
+  while(playlistParent.firstChild) {
+    playlistParent.removeChild(playlistParent.firstChild);
   }
+}
+
+function dragChild(e, child) {
+  e = e || window.event;
+  draggingChild = e.target || e.srcElement;
+  window.addEventListener('mousemove', childMove, true);
+}
+
+function dropChild(e) {
+  draggingChild.style.position = "static";
+  window.removeEventListener('mousemove', childMove, true);
+}
+
+function childMove(e) {
+  draggingChild.style.position = "absolute";
+  draggingChild.style.top = e.clientY + 'px';
 }
 
 //Advertise

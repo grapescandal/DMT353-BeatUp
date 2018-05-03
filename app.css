@@ -82,6 +82,10 @@ hr{
 .sidenav{
     text-align: center;
 }
+#playlistgrid{
+  display: grid;
+  grid-template-columns: auto;
+}
 .detail{
     text-align: center;
     color: white;
@@ -213,6 +217,7 @@ span{
     font-family: 'Prompt', sans-serif;
 }
 .playListBlock {
+  position: absolute;
   cursor: pointer;
   user-select: none;
   text-align: left;
