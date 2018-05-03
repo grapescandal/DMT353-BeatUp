@@ -128,8 +128,8 @@ window.onclick = function(event) {
         modal2.style.display = "none";
     }
 }
-//Button
 
+//Button
 function playOrPause() {
     if(!mytrack.paused && !mytrack.ended){
       pause();
@@ -249,8 +249,7 @@ function update() {
 }
 
 function checkDuration(songDuration) {
-  var indexSongName = mytrack.src.search("Music");
-  var songName = mytrack.src.substring(indexSongName + 6);
+  var songName = getSongName(playList[currentSong]);
   playerSongName.innerHTML = songName.replace(/%20/g, " ");
 
   if(isNaN(songDuration)) {
@@ -308,8 +307,13 @@ function addEventForSongBlock() {
   for(var i = 0; i < reclistLength; i++) {
 
     reclistAll[i].childNodes[1].addEventListener('click', function() {
-      mytrack.src = this.alt;
-      currentSongCover.src = this.src;
+      playList = clearPlayList();
+      songCover = clearSongCover();
+      clearPlayListNav();
+      addToPlayList(this);
+      currentSong = 0;
+      mytrack.src = playList[currentSong];
+      currentSongCover.src = songCover[currentSong];
       playOrPause();
 
       if(!isPlayerShow) {
@@ -320,10 +324,11 @@ function addEventForSongBlock() {
 
     reclistAll[i].childNodes[3].childNodes[3].addEventListener('click', function() {
       addToPlayList(this.parentNode.parentNode.childNodes[1]);
-      currentSong = 0;
-      mytrack.src = playList[currentSong];
-      currentSongCover.src = songCover[currentSong];
-      pause();
+      if(playList.length < 2) {
+        currentSong = 0;
+        mytrack.src = playList[currentSong];
+        currentSongCover.src = songCover[currentSong];
+      }
       if(!isPlayerShow) {
         showPlayer("block");
         isPlayerShow = true;
@@ -374,6 +379,21 @@ function addToPlaylistNav(playList) {
     });
   }
   playlistParent.appendChild(playlistChild);
+}
+
+function clearPlayList() {
+  return playList = [];
+}
+
+function clearSongCover() {
+  return songCover = [];
+}
+
+function clearPlayListNav() {
+  var playlistParent = document.getElementById("mySidenav");
+  while(playlistParent.childNodes[4]) {
+    playlistParent.removeChild(playlistParent.childNodes[4]);
+  }
 }
 
 //Advertise
