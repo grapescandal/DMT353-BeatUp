@@ -379,6 +379,8 @@ function addToPlaylistNav(playList) {
     playlistChild.id = i;
     playlistChild.className = "playListBlock";
     playlistChild.text = getSongName(playList[i]);
+    var rect = playlistChild.getBoundingClientRect();
+    console.log(rect.top, rect.right, rect.bottom, rect.left);
     playlistChild.addEventListener('mousedown', dragChild, false);
     window.addEventListener('mouseup', dropChild, false);
     playlistChild.addEventListener('click', function() {
@@ -410,7 +412,6 @@ function dragChild(e, child) {
 }
 
 function dropChild(e) {
-  draggingChild.style.position = "static";
   window.removeEventListener('mousemove', childMove, true);
 }
 
