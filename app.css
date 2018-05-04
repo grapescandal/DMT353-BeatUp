@@ -89,13 +89,14 @@ hr{
 .detail:hover{
     text-align: center;
     color: white;
-    cursor: pointer;
+    
 }
 .reclist{
     background-color: white;
     width: 150px;
     height: 150px;
     margin: 10px;
+    cursor: pointer;
 
 }
 .layoutreclist{
@@ -557,20 +558,7 @@ span.psw {
 }
 
 
-<<<<<<< HEAD
-.playlistbtn{
-    background-color: Transparent;
-    border: none;
-    width: 15px;
-    height: 15px;
 
-}
-
-
-.btnplus{
-    width: 15px;
-    height: 15px;
-=======
 
 #prevbtn1{
     background-color:Transparent;
@@ -583,5 +571,5 @@ span.psw {
     background-size: 15px ;
     background-repeat: no-repeat;
     background-position: center;
->>>>>>> master
+
 }
