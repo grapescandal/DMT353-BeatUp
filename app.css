@@ -216,15 +216,21 @@ input{
 span{
     font-family: 'Prompt', sans-serif;
 }
-.playListBlock {
+
+.playlistBlock {
+  display: block;
+  cursor: pointer;
+  user-select: none;
+}
+
+.playlistChild {
   cursor: pointer;
   user-select: none;
   text-align: left;
   white-space: nowrap;
 }
-.playListBlockHover {
-  display: block;
-  cursor: pointer;
+
+.playlistChildHover {
   user-select: none;
   text-align: left;
   white-space: nowrap;
@@ -602,10 +608,10 @@ span.psw {
 } */
 /* Move it (define the animation) */
 @-moz-keyframes example1 {
- 0%   { -moz-transform: translateX(70%); }
+ 0%   { -moz-transform: translateX(50%); }
  100% { -moz-transform: translateX(-70%); }
 }
 @-webkit-keyframes example1 {
- 0%   { -webkit-transform: translateX(70%); }
+ 0%   { -webkit-transform: translateX(50%); }
  100% { -webkit-transform: translateX(-70%); }
 }

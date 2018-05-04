@@ -3,7 +3,7 @@ var mytrack = new Audio();
 mytrack.autoplay = false;
 mytrack.loop = false;
 var currentSong = 0;
-var playList = new Array();
+var playList = [];
 var playListEnded;
 
 //All button
@@ -19,7 +19,7 @@ var player = document.getElementById('wrapper');
 var playerSongName = document.getElementById('song');
 var duration = document.getElementById('fullDuration');
 var currentTime = document.getElementById('currentTime');
-var songCover = new Array();
+var songCover = [];
 var currentSongCover;
 var minutes;
 var seconds;
@@ -170,13 +170,13 @@ function stop() {
 }
 
 function muteOrUnmute() {
-    if(mytrack.muted == true){
+    if(mytrack.muted === true){
         mytrack.muted =false;
         mutebtn.style.backgroundImage = 'url("img/player/speaker.png")';
         mutebtn.id = "mutebtn";
     }
-    else{
-        mytrack.muted =true;
+    else {
+        mytrack.muted = true;
         mutebtn.style.backgroundImage = 'url("img/player/speaker (1).png")';
         mutebtn.id = "unmutebtn";
     }
@@ -198,7 +198,7 @@ function nextSong() {
 }
 
 function prevSong() {
-  if(currentSong == 0) {
+  if(currentSong === 0) {
     currentSong = playList.length - 1;
   } else {
     currentSong--;
@@ -378,17 +378,18 @@ function addToPlaylistNav(playList) {
     var playlistChild = document.createElement("a");
     playlistChildBlock.id = "block" + i;
     playlistChild.id = i;
-    playlistChild.className = "playListBlock";
+    playlistChildBlock.className = "playlistBlock";
+    playlistChild.className = "playlistChild";
     playlistChild.text = getSongName(playList[i]);
-    playlistChild.addEventListener('click', function() {
+    playlistChildBlock.addEventListener('click', function() {
     changeCurrentSong(playlistChild.id);
   }, true);
     playlistChildBlock.appendChild(playlistChild);
     playlistChildBlock.addEventListener('mouseenter', function() {
-      playlistChild.className = "playListBlockHover";
+      playlistChild.className = "playlistChildHover";
     });
     playlistChildBlock.addEventListener('mouseleave', function() {
-      playlistChild.className = "playListBlock";
+      playlistChild.className = "playlistChild";
     });
   }
   playlistParent.appendChild(playlistChildBlock);
