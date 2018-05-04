@@ -36,3 +36,19 @@ h1{
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+   #trash {
+     background-color:Transparent;
+    border: none;
+    position: absolute;
+    top: 20px;
+    height: 2%;
+    width: 5%;
+    left: 30px;
+    font-size: 36px;
+    margin-right: 50px;
+    background-image: url("img/trash.png");
+    background-size: 20px ;
+    background-repeat: no-repeat;
+   
+
+}
