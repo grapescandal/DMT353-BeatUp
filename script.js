@@ -41,7 +41,7 @@ var defaulBarKK = document.getElementById('defaulBar');
 var reclistAll;
 
 //Advertise
-var btnAD = new Array();
+var btnAD = [];
 var myIndex = 0;
 
 // Get the modal
