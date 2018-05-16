@@ -633,13 +633,13 @@ span.psw {
     justify-content: space-between;
     display: flex;
     flex-flow: row;
-
+    
 }
 
 
 .custom-select {
     position: relative;
-
+   
     margin-top: 5px;
     margin-left: 4px;
     font-family: 'Fira Sans', sans-serif;
@@ -662,7 +662,7 @@ span.psw {
 }
 
 .containerupload {
-
+    
     text-align: center;
     display: flex;
     flex-flow: column;
@@ -679,3 +679,9 @@ span.psw {
  0%   { -webkit-transform: translateX(50%); }
  100% { -webkit-transform: translateX(-70%); }
 }
+
+
+
+
+
+
