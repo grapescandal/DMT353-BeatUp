@@ -93,13 +93,21 @@ hr{
 .detail:hover{
     text-align: center;
     color: white;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> Pei
 }
 .reclist{
     background-color: white;
     width: 150px;
     height: 150px;
     margin: 10px;
+<<<<<<< HEAD
 }
+=======
+    cursor: pointer;
+>>>>>>> Pei
 
 .reclist:hover{
     cursor: pointer;
@@ -589,6 +597,11 @@ span.psw {
 }
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> Pei
 #prevbtn1{
     background-color:Transparent;
     border: none;
@@ -600,6 +613,10 @@ span.psw {
     background-size: 15px ;
     background-repeat: no-repeat;
     background-position: center;
+<<<<<<< HEAD
+=======
+
+>>>>>>> Pei
 }
 
 .containerup {
