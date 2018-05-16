@@ -13,6 +13,10 @@ var stopbtn = document.getElementById('stopbtn');
 var nextbtn = document.getElementById('nextbtn');
 var prevbtn = document.getElementById('prevbtn');
 var stopbtn = document.getElementById('stopbtn');
+var rating = document.getElementById('stopbtn');
+var unrating = document.getElementById('unrating');
+
+
 
 //Player
 var player = document.getElementById('wrapper');

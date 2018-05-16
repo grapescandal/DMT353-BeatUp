@@ -2,6 +2,7 @@ body{
     background:linear-gradient(141deg, #4c31f5 0%,#b68be5  75%);
     background-attachment: fixed;
     /* text-align: center; */
+ 
     margin: 0;
     font-family: 'Fira Sans', sans-serif;
 }
@@ -383,6 +384,30 @@ nav{
     align-items: center;
     justify-content: flex-start;
 }
+
+
+
+#unrating{
+    background-color: white;
+    border: none;
+    height: 90%;
+    width: 4%;
+    background-image: url("img/nostar.png");
+    background-size: 40% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#rating{
+    background-color: white;
+    border: none;
+    height: 90%;
+    width: 4%;
+    background-image: url("img/star.png");
+    background-size: 40% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .album{
     width: 4%;
     height: auto;
@@ -433,8 +458,8 @@ nav{
   cursor: pointer;
   background-color:Transparent;
   border: none;
-  height: 2%;
-  width: 10%;
+  width: 20px;
+  height: 20px;
   margin-left: 6%;
   align-items: center;
   background-image: url("img/plus.png");
@@ -668,4 +693,36 @@ span.psw {
 @-webkit-keyframes example1 {
  0%   { -webkit-transform: translateX(50%); }
  100% { -webkit-transform: translateX(-70%); }
+}
+
+ol{
+    width: 600px;
+}
+.layoutgrid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    
+
+}
+.divLi{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+th, td {
+    padding: 35px;
+    text-align: center;
+    
+    color: white;
+}
+
+
+
+.reclisttable{
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
 }
