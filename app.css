@@ -428,6 +428,21 @@ nav{
     outline: none !important;
 }
 
+#addToPlayListbtn {
+  outline: none;
+  cursor: pointer;
+  background-color:Transparent;
+  border: none;
+  height: 2%;
+  width: 10%;
+  margin-left: 6%;
+  align-items: center;
+  background-image: url("img/plus.png");
+  background-size: 15px ;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* login */
 /* Full-width input fields */
 input[name="uname"],input[name="lname"], input[name="psw"],input[name="email"],input[name="Confirmemail"], input[name="birthdate"], input[name="unamesong"],input[name="ati"] {
@@ -586,18 +601,6 @@ span.psw {
     .cancelbtn {
        width: 100%;
     }
-}
-#prevbtn1{
-    background-color:Transparent;
-    border: none;
-    height: 2%;
-    width: 10%;
-    margin-left: 6%;
-    align-items: center;
-    background-image: url("img/plus.png");
-    background-size: 15px ;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .containerup {
