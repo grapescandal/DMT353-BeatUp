@@ -93,21 +93,13 @@ hr{
 .detail:hover{
     text-align: center;
     color: white;
-<<<<<<< HEAD
-=======
-    
->>>>>>> Pei
 }
 .reclist{
     background-color: white;
     width: 150px;
     height: 150px;
     margin: 10px;
-<<<<<<< HEAD
 }
-=======
-    cursor: pointer;
->>>>>>> Pei
 
 .reclist:hover{
     cursor: pointer;
@@ -595,13 +587,6 @@ span.psw {
        width: 100%;
     }
 }
-
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> Pei
 #prevbtn1{
     background-color:Transparent;
     border: none;
@@ -613,10 +598,6 @@ span.psw {
     background-size: 15px ;
     background-repeat: no-repeat;
     background-position: center;
-<<<<<<< HEAD
-=======
-
->>>>>>> Pei
 }
 
 .containerup {
@@ -633,13 +614,13 @@ span.psw {
     justify-content: space-between;
     display: flex;
     flex-flow: row;
-    
+
 }
 
 
 .custom-select {
     position: relative;
-   
+
     margin-top: 5px;
     margin-left: 4px;
     font-family: 'Fira Sans', sans-serif;
@@ -662,7 +643,7 @@ span.psw {
 }
 
 .containerupload {
-    
+
     text-align: center;
     display: flex;
     flex-flow: column;
@@ -670,6 +651,12 @@ span.psw {
     align-items: center;
     border-radius: 0px 0px 10px 10px;
 }
+
+#trash {
+  cursor: pointer;
+  outline: 0;
+}
+
 /* Move it (define the animation) */
 @-moz-keyframes example1 {
  0%   { -moz-transform: translateX(50%); }
@@ -679,9 +666,3 @@ span.psw {
  0%   { -webkit-transform: translateX(50%); }
  100% { -webkit-transform: translateX(-70%); }
 }
-
-
-
-
-
-

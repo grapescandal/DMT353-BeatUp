@@ -24,26 +24,6 @@ h1{
     transition: 0.3s;
 }
 
-<<<<<<< HEAD
-=======
-
-.trash{
-    
-    
-    width: 50%;
-    /* margin-top: 10px; */
-    /* margin-bottom: 10px; */
-
-    justify-content: flex-start;
-};
-
-
-
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
->>>>>>> Pei
 .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -69,6 +49,6 @@ h1{
     background-image: url("img/trash.png");
     background-size: 20px ;
     background-repeat: no-repeat;
-   
+
 
 }
