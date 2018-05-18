@@ -1,11 +1,11 @@
 use beat_up;
 insert into user 
 (user_name,user_lastname,user_email,password,date_of_birth) values
-('taew','leader','leader@email.ocm','123456789','1997-01-02'),
-('ton','lnwza','ton@email.ocm','987654321','1996-03-04'),
-('oat','rawat','rawat@email.ocm','zxc123','1995-05-06'),
-('pei','hello','hello@email.ocm','123asd','1994-07-08'),
-('binarynman','helloworld','binarynman@email.ocm','789qwe','1993-09-10');
+('taew','leader','leader@email.com','123456789','1997-01-02'),
+('ton','lnwza','ton@email.com','987654321','1996-03-04'),
+('oat','rawat','rawat@email.com','zxc123','1995-05-06'),
+('pei','hello','hello@email.com','123asd','1994-07-08'),
+('binarynman','helloworld','binarynman@email.com','789qwe','1993-09-10');
 insert into music 
 (music_name,music_artist,music_moods,music_genres,user_id) values
 ('Count on me','Bruno Mars',2,1,2),
@@ -61,3 +61,5 @@ insert into play_list_info
 (2,5),
 (2,4),
 (1,4);
+
+select * from music;
