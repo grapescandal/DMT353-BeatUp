@@ -2,7 +2,7 @@ body{
     background:linear-gradient(141deg, #4c31f5 0%,#b68be5  75%);
     background-attachment: fixed;
     /* text-align: center; */
- 
+
     margin: 0;
     font-family: 'Fira Sans', sans-serif;
 }
@@ -701,7 +701,7 @@ ol{
 .layoutgrid{
     display: grid;
     grid-template-columns: auto auto auto auto;
-    
+
 
 }
 .divLi{
@@ -714,15 +714,42 @@ ol{
 th, td {
     padding: 35px;
     text-align: center;
-    
+
     color: white;
 }
 
+table {
+  counter-reset: tableCount;
+}
 
+.counterCell:before {
+    content: counter(tableCount);
+    counter-increment: tableCount;
+}
 
 .reclisttable{
     background-color: white;
     width: 100px;
     height: 100px;
     margin: 10px;
+}
+
+#unrating {
+  user-select: none;
+  outline: none;
+}
+
+.chart {
+  display: none;
+  user-select: none;
+}
+
+.musicInfo {
+  cursor: pointer;
+  user-select: none;
+}
+
+.musicName {
+  cursor: pointer;
+  user-select: none;
 }

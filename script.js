@@ -489,18 +489,31 @@ function Moods(){
     xhr.open("GET","Moods.php");
     xhr.onload = function(){
         postMsg(xhr.responseText);
-        addEventForSongBlock();
     };
     xhr.onerror = function() {alert("error!");};
     xhr.send();
 }
 function Charts(){
-	var xhr = new XMLHttpRequest();
+	 var xhr = new XMLHttpRequest();
     xhr.open("GET","Charts.php");
     xhr.onload = function(){
         postMsg(xhr.responseText);
-        addEventForSongBlock();
+        CreateChartsScript();
     };
+    xhr.onerror = function() {alert("error!");};
+    xhr.send();
+}
+
+function CreateChartsScript() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(evt) {
+      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var chartsScript = document.createElement("script");
+        chartsScript.src = "charts.js";
+        document.body.appendChild(chartsScript);
+      }
+    }
+    xhr.open("GET","charts.js");
     xhr.onerror = function() {alert("error!");};
     xhr.send();
 }
