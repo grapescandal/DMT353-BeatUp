@@ -33,6 +33,9 @@
                 <input type="text" placeholder="Search" />
             </div>
             <div class="nav-right">
+
+                <button type="submit" class="flo " id"Logout">Logout</button>
+                <button type="submit" class="flo "id"Upload" >Upload</button>
                 <button onclick="document.getElementById('id01').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Log in</button>
 								<p><?php echo $username ?></p>
                 <a>|</a>
