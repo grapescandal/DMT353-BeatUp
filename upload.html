@@ -1,68 +1,66 @@
-<!-- <div class="recommend">
-    <p>Charts</p>
-    <hr>
-</div>
-<div class="layoutreclist">
-    <div class="reclist"></div>
-    <div class="reclist"></div>
-    <div class="reclist"></div>
-    <div class="reclist"></div>
-</div> -->
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+<link rel="stylesheet" href="app.css" />
 
 <div class="upload">
         <p>Upload</p>
 </div>
-<div class="uploadbox">
-        <div class="containerup1">
-<div class="containerup">
-        <label><b>Name</b></label>
-        <input type="text" placeholder="Enter Name" name="unamesong" id="NamesongIput" required>
-        <label><b>Moods</b></label>
-        <div class="custom-select">
-                <select>
-                  <option value="0">Select Moods:</option>
-                  <option value="1">Romance</option>
-                  <option value="2">Chill</option>
-                  <option value="3">Sadly</option>
-                  <option value="4">Alone</option>
-               
-                </select>
-              </div>
+
+
+        <div class="uploadbox">
+                <div class="containerup1">
+
+                                <div class="containerupload ">
+                                                <div id="displayPic">
+                                                                <img src= <?php echo "img/".$imgfile ?> >
+                                                        </div>
+                                                <button type="submit" class="uploadbtnpic ">UploadPicture</button>
+                                                <button type="submit" class="uploadbtnpic ">UploadMusic</button>
+                                              
+                                            </div>
+
+                        <div class="containerup">
+                                <label><b>TITLE</b></label>
+                                <input type="text" placeholder="Enter Title" name="unamesong" id="NamesongIput" required>
+                                <label><b>Artist</b></label>
+                         <input type="text" placeholder="Enter Artist" name="ati" id="AtiIput" required>        
+                                <label><b>Moods</b></label>
+                         <div class="custom-select">
+                                <select>
+                                        <option value="0">Select Moods:</option>
+                                        <option value="1">Romance</option>
+                                        <option value="2">Chill</option>
+                                        <option value="3">Sadly</option>
+                                        <option value="4">Alone</option>
+                
+                                </select>
+                         </div>
+                       
+                         <label><b>Genres</b></label>
+                         <div class="custom-select">
+                                 <select>
+                                   <option value="0">Select Genres:</option>
+                                   <option value="1">Rock</option>
+                                   <option value="2">Pop</option>
+                                   <option value="3">Jazz</option>
+                                   <option value="4">R&B</option>
+                                
+                                 </select>
+                               </div>
+
+
+                        </div>
 
 
 
-        </div>
 
-
-
-
-
-
-        <div class="containerup">
-        <label><b>Artist</b></label>
-        <input type="text" placeholder="Enter Artist" name="ati" id="AtiIput" required>
-        <label><b>Genres</b></label>
-        <div class="custom-select">
-                <select>
-                  <option value="0">Select Genres:</option>
-                  <option value="1">Rock</option>
-                  <option value="2">Pop</option>
-                  <option value="3">Jazz</option>
-                  <option value="4">R&B</option>
-               
-                </select>
-              </div>
-              
-    </div>
 
     
-</div>
-<div class="containerupload ">
-        <img src="img/upload.png" alt="lock" class="avatar">
+                </div>
 
-    </div>
+      
 
-    <div class="container">
+    <div class="imgcontainersunmit">
             <button type="submit" class="uploadbtn ">Submit</button>
     </div>
        
