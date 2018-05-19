@@ -484,12 +484,25 @@ function readLog(){
   xhr.onerror = function() {alert("error!");};
   xhr.send();
 }
+function CreateNewReleaseScript() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(evt) {
+      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var chartsScript = document.createElement("script");
+        chartsScript.src = "newrelease.js";
+        document.body.appendChild(chartsScript);
+      }
+    }
+    xhr.open("GET","charts.js");
+    xhr.onerror = function() {alert("error!");};
+    xhr.send();
+}
 function NewRelease(){
 	var xhr = new XMLHttpRequest();
     xhr.open("GET","NewRelease.php");
     xhr.onload = function() {
         postMsg(xhr.responseText);
-        addEventForSongBlock();
+        CreateNewReleaseScript()
     };
     xhr.onerror = function() {alert("error!");};
     xhr.send();

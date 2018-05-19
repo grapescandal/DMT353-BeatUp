@@ -5,7 +5,6 @@ function readChart() {
   xhr.onreadystatechange = function(evt) {
     if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.response);
-      console.log(result);
       createChartList(result);
     }
   }
@@ -56,7 +55,6 @@ function addEventForChart() {
     isPlayerShow = true;
   }
 }
-
 
 function addToPlayList(element) {
   var index = playList.indexOf(element.alt);

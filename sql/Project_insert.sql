@@ -45,16 +45,24 @@ insert into albums
 ('ALONEVERA','wan-01.png',2);
 insert into albums_detail
 (albums_id,music_id) values
-(2,5),
+(1,1),
 (2,2),
-(2,1),
-(2,3),
-(2,4);
+(3,3),
+(4,4),
+(5,5),
+(6,6),
+(7,7),
+(8,8),
+(9,9);
 insert into `like`
 (user_id,music_id) values 
-(1,4),
-(3,5),
-(2,3);
+(1, 4),
+(3, 5),
+(2, 3),
+(2, 4),
+(5, 4),
+(3, 5),
+(4, 8);
 insert into view
 (user_id,music_id,view_datetime) values
 (1,3,'2018-04-18 11:45:08'),
@@ -76,4 +84,8 @@ insert into play_list_info
 (2,4),
 (1,4);
 
-select * from music;
+SELECT music_name,music_local, music_artist,upload_date,picture_albums FROM music
+    left join albums_detail
+    on music.music_id = albums_detail.music_id
+    left join albums
+    on albums_detail.albums_id = albums.albums_id order by upload_date DESC LIMIT 4;

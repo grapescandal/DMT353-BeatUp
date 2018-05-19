@@ -6,17 +6,21 @@
     $connection = new mysqli($servername, $username, $password, $dbname);
 
     $query_statment =
-    "SELECT music_name,music_local, music_artist,upload_date,picture_albums FROM music
-    left join albums_detail
-    on music.music_id = albums_detail.music_id
-    left join albums
-    on music.music_id = albums.albums_id order by upload_date DESC;";
+    "SELECT music_name,music_local, music_artist,upload_date,picture_albums FROM `like`
+        left join music
+        on `like`.music_id = music.music_id
+        left join albums_detail
+        on `like`.music_id = albums_detail.music_id
+        left join albums
+        on albums_detail.albums_id = albums.albums_id
+        GROUP BY music.music_id
+        ORDER BY COUNT(`like`.user_id) DESC LIMIT 10;";
 
     $query_result = mysqli_query($connection, $query_statment);
-    $newreleaseinfo = [];
+    $chartsInfo = [];
     while($result = mysqli_fetch_assoc($query_result)){
-        $newreleaseinfo[] = $result;
+        $chartsInfo[] = $result;
     }
     $connection->close();
-    echo json_encode($newreleaseinfo);
+    echo json_encode($chartsInfo);
 ?>
