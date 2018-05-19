@@ -5,6 +5,7 @@ function readChart() {
   xhr.onreadystatechange = function(evt) {
     if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.response);
+      console.log(result);
       createChartList(result);
     }
   }
@@ -18,15 +19,16 @@ function createChartList(chartsList) {
   var chartsLength = chartsList.length;
   for(var i = 0; i < chartsLength; i++) {
     var container = document.getElementById("template_charts").cloneNode(true);
-    container.getElementsByClassName("reclisttable")[0].alt = "Music/GALAXY - D GERRARD ft. Kob The X Factor.mp3";
-    container.getElementsByClassName("reclisttable")[0].src = "img/Album/D-Gerrard.jpg";
+    container.getElementsByClassName("reclisttable")[0].alt = "Music/" + chartsList[i]["music_local"];
+    container.getElementsByClassName("reclisttable")[0].src = "img/Album/" + chartsList[i]["picture_albums"];
     container.getElementsByClassName("musicName")[0].innerHTML = chartsList[i]["music_name"];
+    container.getElementsByClassName("artist")[0].innerHTML = chartsList[i]["music_artist"];
     container.style.display = "table-row";
     container.getElementsByClassName("musicInfo")[0].addEventListener('click', addEventForChart);
     container.getElementsByClassName("musicName")[0].addEventListener('click', addEventForChart);
 
     //add to playlist
-    container.childNodes[7].addEventListener('click', function() {
+    container.childNodes[9].addEventListener('click', function() {
       addToPlayList(this.parentNode.getElementsByClassName("reclisttable")[0]);
 
       if(!isPlayerShow) {
