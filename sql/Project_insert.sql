@@ -7,18 +7,25 @@ insert into user
 ('pei','hello','hello@email.com','123asd','1994-07-08'),
 ('binarynman','helloworld','binarynman@email.com','789qwe','1993-09-10');
 insert into music 
-(music_name,music_artist,music_moods,music_genres,user_id) values
-('Count on me','Bruno Mars',2,1,2),
-('Shape of you','Ed Sheeran',4,1,3),
-('Sugar','Maroon5',3,1,0),
-('Nightmare','Avenged Sevenfold',4,2,1),
-('Lay me down','Sam Smith',1,3,4);
+(music_name,music_artist,music_moods,music_genres,music_local,user_id) values
+('First Lady','Peck Palitchok',3,3, 'First Lady - Pek Palit.mp3',2),
+('GALAXY','D Gerrard',2,3,'GALAXY - D GERRARD ft. Kob The X Factor.mp3',3),
+('Good morning teacher','Atom',1,3,'Good Morning Teacher.mp3',0),
+('มะงึกๆอุ๋งๆ','ORNLY YOU',3,1,'ORNLY YOU.mp3',1),
+('Shonichi','BNK48',3,1,'Shonichi - BNK48.mp3',0),
+('นอนได้แล้ว','THE TOYS',4,3,'นอนได้แล้ว - THE TOYS feat. ฟักกลิ้ง ฮีโร่.mp3',1),
+('ภาพจำ','ป็อป ปองกูล',1,3,'ภาพจำ - ป๊อป ปองกูล.mp3',2),
+('ร้อยล้านวิว','STAMP',1,1,'ร้อยล้านวิว - STAMP.mp3',3),
+('ระหว่างที่เธอจะจากไป','ว่าน ธนกฤต feat.Moving and Cut',1,3,'ระหว่างที่เธอจะจากไป -  Wan Soloist feat.Moving and Cut.mp3',4);
 insert into genres
 (genres_name) values
 ('Pop'),
 ('Rock'),
 ('R&B'),
-('Jass');
+('Jass'),
+('Hiphop'),
+('Acoustic'),
+('Indy');
 insert into moods
 (moods_name) values
 ('Sad'),
@@ -26,9 +33,16 @@ insert into moods
 ('Happy'),
 ('Relax');
 insert into albums
-(albums_name,user_id) values
-('Top 50 Thailand',1),
-('Top 50 Global',2);
+(albums_name,picture_albums,user_id) values
+('First Lady','firstlady-01.png',1),
+('ZERO EP',2),
+('Cyantist',2),
+('มะงึกๆอุ๋งๆ',1),
+('Shonichi - วันแรก (Type B) - EP',1),
+('นอนได้แล้ว - single',1),
+(' ภาพจำ (Live Session)',2),
+('ร้อยล้านวิว - Single',1),
+('ALONEVERA',2);
 insert into albums_detail
 (albums_id,music_id) values
 (2,5),

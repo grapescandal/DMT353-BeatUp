@@ -19,7 +19,7 @@ function createChartList(chartsList) {
   for(var i = 0; i < chartsLength; i++) {
     var container = document.getElementById("template_charts").cloneNode(true);
     container.getElementsByClassName("reclisttable")[0].alt = "Music/GALAXY - D GERRARD ft. Kob The X Factor.mp3";
-    container.getElementsByClassName("reclisttable")[0].src = "img/recom/D-Gerrard.jpg";
+    container.getElementsByClassName("reclisttable")[0].src = "img/Album/D-Gerrard.jpg";
     container.getElementsByClassName("musicName")[0].innerHTML = chartsList[i]["music_name"];
     container.style.display = "table-row";
     container.getElementsByClassName("musicInfo")[0].addEventListener('click', addEventForChart);
