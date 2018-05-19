@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	$userId = "";
+	$username = "";
+	if(isset($_SESSION["email"]) && isset($_SESSION["password"])){
+		$userId = $_SESSION['userId'];
+		$username = $_SESSION['username'];
+	}
+?>
+
 <html>
     <head>
         <meta charset="utf-8" />
@@ -23,9 +33,10 @@
                 <input type="text" placeholder="Search" />
             </div>
             <div class="nav-right">
-                <button onclick="document.getElementById('id01').style.display='block'" class="flo">Log in</button>
+                <button onclick="document.getElementById('id01').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Log in</button>
+								<p><?php echo $username ?></p>
                 <a>|</a>
-                <button onclick="document.getElementById('id02').style.display='block'" class="flo">Register</button>
+                <button onclick="document.getElementById('id02').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Register</button>
             </div>
         </nav>
 
@@ -34,7 +45,7 @@
         <div class="layout">
             <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button> -->
             <div id="id01" class="modal">
-                <form class="modal-content animate" action="query/login.php">
+                <form class="modal-content animate" method="get" action="query/login.php">
                     <div class="imgcontainer">
                         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                         <img src="img/sound-bars-pulse2.png"alt="lock" class="avatar">
@@ -57,7 +68,7 @@
                 </form>
             </div>
             <div id="id02" class="modal">
-                <form class="modal-content2 animate" action="index.html">
+                <form class="modal-content2 animate" action="index.php">
                     <div class="imgcontainer">
                         <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                     </div>

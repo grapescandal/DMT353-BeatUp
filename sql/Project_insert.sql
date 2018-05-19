@@ -61,5 +61,3 @@ insert into play_list_info
 (2,5),
 (2,4),
 (1,4);
-
-select * from music;
