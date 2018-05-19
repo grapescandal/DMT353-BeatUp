@@ -35,14 +35,14 @@ insert into moods
 insert into albums
 (albums_name,picture_albums,user_id) values
 ('First Lady','firstlady-01.png',1),
-('ZERO EP',2),
-('Cyantist',2),
-('มะงึกๆอุ๋งๆ',1),
-('Shonichi - วันแรก (Type B) - EP',1),
-('นอนได้แล้ว - single',1),
-(' ภาพจำ (Live Session)',2),
-('ร้อยล้านวิว - Single',1),
-('ALONEVERA',2);
+('ZERO EP','D-Gerrard.jpg',2),
+('Cyantist','1318647271-Cyantist.jpg',2),
+('มะงึกๆอุ๋งๆ','oong.jpg',1),
+('Shonichi - วันแรก (Type B) - EP','วันเเรก-01.png',1),
+('นอนได้แล้ว - single','นอนได้แล้ว-Sleep-Now.jpg',1),
+(' ภาพจำ (Live Session)','ภาพจำ-ป๊อบ-ปองกูล.jpg',2),
+('ร้อยล้านวิว - Single','ร้อยล้าน-01.png',1),
+('ALONEVERA','wan-01.png',2);
 insert into albums_detail
 (albums_id,music_id) values
 (2,5),
@@ -75,3 +75,5 @@ insert into play_list_info
 (2,5),
 (2,4),
 (1,4);
+
+select * from music;
