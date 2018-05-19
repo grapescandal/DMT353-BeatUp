@@ -2,9 +2,14 @@
 	session_start();
 	$userId = "";
 	$username = "";
+
 	if(isset($_SESSION["email"]) && isset($_SESSION["password"])){
 		$userId = $_SESSION['userId'];
 		$username = $_SESSION['username'];
+	}
+	else {
+		$_SESSION['login'] = 'block';
+		$_SESSION['logout'] = 'none';
 	}
 ?>
 
@@ -35,7 +40,9 @@
             <div class="nav-right">
                 <button onclick="document.getElementById('id01').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Log in</button>
 								<p><?php echo $username ?></p>
+								<button type="submit" class="flo" id="logoutBtn" style = "display: <?php echo $_SESSION['logout']?>">Logout</button>
                 <a>|</a>
+								<button type="submit" class="flo" id="uploadsBtn" style = "display: <?php echo $_SESSION['logout']?>">Uploads</button>
                 <button onclick="document.getElementById('id02').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Register</button>
             </div>
         </nav>
