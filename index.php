@@ -38,16 +38,11 @@
                 <input type="text" placeholder="Search" />
             </div>
             <div class="nav-right">
-            
-            <button onclick="document.getElementById('id03').style.display='block'" class="flo">Upload</button>
-                <a>|</a>
-                
-             
                 <button onclick="document.getElementById('id01').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Log in</button>
 								<p><?php echo $username ?></p>
 								<button type="submit" class="flo" id="logoutBtn" style = "display: <?php echo $_SESSION['logout']?>">Logout</button>
                 <a>|</a>
-								<button type="submit" class="flo" id="uploadsBtn" style = "display: <?php echo $_SESSION['logout']?>">Uploads</button>
+								<button onclick="document.getElementById('id03').style.display='block'" type="submit" class="flo" id="uploadsBtn" style = "display: <?php echo $_SESSION['logout']?>">Uploads</button>
                 <button onclick="document.getElementById('id02').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Register</button>
             </div>
         </nav>
@@ -106,9 +101,9 @@
 
 
               <div id="id03" class="modal">
-                    
-                      
-                    
+
+
+
 
                     <div class="modal-content3">
                             <form class="uploadbox animate" action="index.php">
@@ -119,21 +114,21 @@
                                         <p>Upload</p>
                                 </div>
                                 <div class="containerup1">
-                
+
                                                 <div class="containerupload ">
                                                                 <div id="displayPic">
-                                                                                
+
                                                                         </div>
                                                                 <button type="submit" id="uploadpic" class="uploadbtnpic ">UploadPicture</button>
                                                                 <button type="submit" id="uploadmusic" class="uploadbtnpic ">UploadMusic</button>
-                                                              
+
                                                             </div>
-                
+
                                         <div class="containerup">
                                                 <label><b>TITLE</b></label>
                                                 <input type="text" placeholder="Enter Title" name="unamesong" id="NamesongIput" required>
                                                 <label><b>Artist</b></label>
-                                         <input type="text" placeholder="Enter Artist" name="ati" id="AtiIput" required>        
+                                         <input type="text" placeholder="Enter Artist" name="ati" id="AtiIput" required>
                                                 <label><b>Moods</b></label>
                                          <div class="custom-select">
                                                 <select>
@@ -142,10 +137,10 @@
                                                         <option value="2">Chill</option>
                                                         <option value="3">Sadly</option>
                                                         <option value="4">Alone</option>
-                                
+
                                                 </select>
                                          </div>
-                                       
+
                                          <label><b>Genres</b></label>
                                          <div class="custom-select">
                                                  <select>
@@ -154,26 +149,26 @@
                                                    <option value="2">Pop</option>
                                                    <option value="3">Jazz</option>
                                                    <option value="4">R&B</option>
-                                                
+
                                                  </select>
                                                </div>
-                
-                
+
+
                                         </div>
-                
-                
-                
-                
-                
-                    
+
+
+
+
+
+
                                 </div>
-                
-                      
-                
+
+
+
                                     <div class="imgcontainersunmit">
                                             <button type="submit" class="uploadbtn ">Submit</button>
                                     </div>
-                       
+
                     </form>
                 </div>
                 </div>

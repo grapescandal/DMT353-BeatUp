@@ -55,21 +55,16 @@ var t;
 var updateTime;
 
 //profile
-var uploadsBtn = document.getElementById("uploadsBtn");
 var logoutBtn = document.getElementById("logoutBtn");
 
 //window
 window.onload = function() {
 
     currentSongCover = document.getElementById('cover');
-    uploadsBtn.addEventListener('click', function() {
-      window.location.href = "upload.html";
-    });
 
     logoutBtn.addEventListener('click', function() {
       window.location.href = "query/logout.php";
     });
-
 
     //player
     playbtn.addEventListener('click', playOrPause,false);
