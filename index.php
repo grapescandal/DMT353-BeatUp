@@ -111,7 +111,7 @@
                     
 
                     <div class="modal-content3">
-                            <form class="uploadbox" action="index.php">
+                            <form class="uploadbox animate" action="index.php">
                                 <div class="imgcontainer">
                                         <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
                                     </div>
