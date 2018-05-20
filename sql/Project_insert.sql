@@ -87,7 +87,7 @@ insert into play_list_info
 (2,4),
 (2,3);
 
-SELECT music_name,music_local, music_artist,upload_date,picture_albums, COUNT(`like`.user_id) FROM `like`
+SELECT music.music_id, music_name,music_local, music_artist,upload_date,picture_albums, COUNT(`like`.user_id) FROM `like`
         left join music
         on `like`.music_id = music.music_id
         left join albums_detail

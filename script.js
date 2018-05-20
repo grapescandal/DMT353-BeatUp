@@ -5,6 +5,7 @@ mytrack.loop = false;
 var currentSong = 0;
 var playList = [];
 var songCover = [];
+var musicIdList = [];
 var playListEnded;
 
 //All button
@@ -248,11 +249,19 @@ function nextSong() {
   if(currentSong < playList.length) {
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
+    currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
+    if(global_user_id > 0) {
+      checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
+    }
     playOrPause();
   } else {
     currentSong = Math.abs(currentSong) % playList.length;
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
+    currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
+    if(global_user_id > 0) {
+      checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
+    }
     playOrPause();
   }
 }
@@ -264,9 +273,14 @@ function prevSong() {
     currentSong--;
   }
 
+
   if(currentSong < playList.length) {
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
+    currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
+    if(global_user_id > 0) {
+      checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
+    }
     playOrPause();
   }
 }
@@ -426,9 +440,14 @@ function getSongName(songName) {
 
 function changeCurrentSong(songIndex){
   mytrack.pause();
-  currentSong = songIndex;
+  currentSong = Number(songIndex);
+
   mytrack.src = playList[currentSong];
   currentSongCover.src = songCover[currentSong];
+  currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
+  if(global_user_id > 0) {
+    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
+  }
   playOrPause();
 }
 
@@ -437,6 +456,7 @@ function addToPlayList(element) {
   if(index < 0) {
     playList.push(element.alt);
     songCover.push(element.src);
+    musicIdList.push(element.getAttribute("music_id"));
 
     addToPlaylistNav(playList);
   }
@@ -445,15 +465,14 @@ function addToPlayList(element) {
     currentSong = 0;
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
-  }
-  currentSongCover.setAttribute("currentMusic_id", element.getAttribute("music_id"));
-  if(global_user_id > 0) {
-    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
+    currentSongCover.setAttribute("currentMusic_id", element.getAttribute("music_id"));
+    if(global_user_id > 0) {
+      checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
+    }
   }
 }
 
 function addToPlaylistNav(playList) {
-  openNav();
   var playlistParent = document.getElementById("playlistgrid");
   for (var i = 0; i < playList.length; i++) {
     var playlistChildBlock = document.createElement("div");
