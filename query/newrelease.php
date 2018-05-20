@@ -10,7 +10,7 @@ $connection = new mysqli($servername, $username, $password, $dbname);
     left join albums_detail
     on music.music_id = albums_detail.music_id
     left join albums
-    on albums_detail.albums_id = albums.albums_id order by upload_date DESC LIMIT 4;";
+    on albums_detail.albums_id = albums.albums_id order by upload_date DESC LIMIT 8;";
 
     $query_result = mysqli_query($connection, $query_statment);
     $newreleaseinfo = [];

@@ -6,8 +6,7 @@ create table user(
     user_name varchar(50) not null,
     user_lastname varchar(50) not null,
     user_email varchar(50) not null,
-    password nvarchar(20) not null,
-    date_of_birth date not null
+    password nvarchar(20) not null
 );
 create table music(
 	music_id int primary key auto_increment,
@@ -48,9 +47,8 @@ create table view(
 );
 create table play_list(
 	play_list_id int primary key auto_increment,
-	play_list_name varchar(50) not null,
-    create_date date not null,
-    user_id int not null
+    user_id int unique,
+	play_list_name varchar(50)
 );
 create table play_list_info(
 	play_list_id int not null,

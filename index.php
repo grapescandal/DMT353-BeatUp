@@ -75,7 +75,7 @@
                 </form>
             </div>
             <div id="id02" class="modal">
-                <form class="modal-content2 animate" action="index.php">
+                <form class="modal-content2 animate" action="query/register.php">
                     <div class="imgcontainer">
                         <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                     </div>
@@ -87,10 +87,9 @@
                         <label><b>Email</b></label>
                         <input type="text" placeholder="Enter email" name="email" id="emailIput" required>
                         <label><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" id="pswIput" required>
-                        <label><b>Date of birth</b></label>
-                        <input type="date" placeholder="Enter Password" name="birthdate" id="birthdate" required>
-
+                        <input type="password" placeholder="Enter Password" name="password" id="pswIput" required>
+												<label><b>Retype Password</b></label>
+                        <input type="password" placeholder="Enter Password again" name="repassword" id="repswIput" required>
                     </div>
                     <div class="container2" style="background-color:#f1f1f1">
                         <button type="submit" class="loginbtn">Submit</button>

@@ -479,7 +479,7 @@ nav{
 
 /* login */
 /* Full-width input fields */
-input[name="uname"],input[name="lname"], input[name="psw"],input[name="email"],input[name="Confirmemail"], input[name="birthdate"], input[name="unamesong"],input[name="ati"] {
+input[name="uname"],input[name="lname"], input[name="password"], input[name="repassword"],input[name="email"],input[name="Confirmemail"], input[name="birthdate"], input[name="unamesong"],input[name="ati"] {
     width: 100%;
     height: 30px;
     padding: 12px 20px;
@@ -763,9 +763,9 @@ ol{
     align-items: center;
 }
 
-
 th, td {
-    padding: 35px;
+    padding-left: 35px;
+    padding-right: 35px;
     text-align: center;
 
     color: white;

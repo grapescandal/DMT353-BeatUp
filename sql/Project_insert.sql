@@ -1,11 +1,11 @@
 use beat_up;
 insert into user 
-(user_name,user_lastname,user_email,password,date_of_birth) values
-('taew','leader','leader@email.com','123456789','1997-01-02'),
-('ton','lnwza','ton@email.com','987654321','1996-03-04'),
-('oat','rawat','rawat@email.com','zxc123','1995-05-06'),
-('pei','hello','hello@email.com','123asd','1994-07-08'),
-('binarynman','helloworld','binarynman@email.com','789qwe','1993-09-10');
+(user_name,user_lastname,user_email,password) values
+('taew','leader','leader@email.com','123456789'),
+('ton','lnwza','ton@email.com','987654321'),
+('oat','rawat','rawat@email.com','zxc123'),
+('pei','hello','hello@email.com','123asd'),
+('binarynman','helloworld','binarynman@email.com','789qwe');
 insert into music 
 (music_name,music_artist,music_moods,music_genres,music_local,user_id) values
 ('First Lady','Peck Palitchok',3,3, 'First Lady - Pek Palit.mp3',2),
@@ -72,20 +72,19 @@ insert into view
 (5,3,'2018-02-23 06:33:07'),
 (5,1,'2018-01-15 09:25:04');
 insert into play_list
-(play_list_name,create_date,user_id) values
-('peilnwza','2017-04-19',4),
-('oatlnwza','2017-04-19',3);
+(play_list_name,user_id) values
+('01',1),
+('02',2),
+('03',3),
+('04',4),
+('05',5);
 insert into play_list_info
 (play_list_id,music_id) values
 (1,1),
-(2,1),
 (1,2),
+(1,3),
 (2,5),
 (2,4),
-(1,4);
+(2,3);
 
-SELECT music_name,music_local, music_artist,upload_date,picture_albums FROM music
-    left join albums_detail
-    on music.music_id = albums_detail.music_id
-    left join albums
-    on albums_detail.albums_id = albums.albums_id order by upload_date DESC LIMIT 4;
+SELECT user_email,password FROM user;
