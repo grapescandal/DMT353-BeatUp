@@ -213,7 +213,7 @@
                                 <div id="progressvolumeBar"></div>
                             </div>
                             <span id="currentTime">0:00</span>/<span id="fullDuration">0:00</span>
-                            <div class="song" id="song"></div>
+                            <div class="song2" id="song"></div>
                             <button type="button"id="unrating"></button>
 
 
