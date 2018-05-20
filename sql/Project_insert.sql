@@ -7,7 +7,7 @@ insert into user
 ('pei','hello','hello@email.com','123asd'),
 ('binarynman','helloworld','binarynman@email.com','789qwe');
 insert into music 
-(music_name,music_artist,music_moods,music_genres,music_local,user_id) values
+(music_name,music_artist,music_moods,music_genres,music_local, upload_date,user_id) values
 ('First Lady','Peck Palitchok',3,3, 'First Lady - Pek Palit.mp3',2),
 ('GALAXY','D Gerrard',2,3,'GALAXY - D GERRARD ft. Kob The X Factor.mp3',3),
 ('Good morning teacher','Atom',1,3,'Good Morning Teacher.mp3',0),
