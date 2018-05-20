@@ -6,7 +6,7 @@
     $connection = new mysqli($servername, $username, $password, $dbname);
 
     $query_statment =
-    "SELECT music_name,music_local, music_artist,upload_date,picture_albums FROM `like`
+    "SELECT  music.music_id, music_name,music_local, music_artist,upload_date,picture_albums FROM `like`
         left join music
         on `like`.music_id = music.music_id
         left join albums_detail

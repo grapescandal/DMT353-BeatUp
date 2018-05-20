@@ -4,6 +4,7 @@ mytrack.autoplay = false;
 mytrack.loop = false;
 var currentSong = 0;
 var playList = [];
+var songCover = [];
 var playListEnded;
 
 //All button
@@ -13,7 +14,6 @@ var stopbtn = document.getElementById('stopbtn');
 var nextbtn = document.getElementById('nextbtn');
 var prevbtn = document.getElementById('prevbtn');
 var stopbtn = document.getElementById('stopbtn');
-var rating = document.getElementById('stopbtn');
 var unrating = document.getElementById('unrating');
 
 //Player
@@ -21,7 +21,6 @@ var player = document.getElementById('wrapper');
 var playerSongName = document.getElementById('song');
 var duration = document.getElementById('fullDuration');
 var currentTime = document.getElementById('currentTime');
-var songCover = [];
 var currentSongCover;
 var minutes;
 var seconds;
@@ -56,15 +55,68 @@ var updateTime;
 
 //profile
 var logoutBtn = document.getElementById("logoutBtn");
+var global_user_id = 0;
+var global_likeStatus = false;
+
+var checkLogin = function(){
+    //when retrieve user information call function onUserReceived
+    var onUserReceived = function(userInformation){
+        var username = userInformation.username;
+        window.global_user_id = userInformation.userId;
+    }
+
+    //retrieve user information
+    getResponse("checklogin.php", onUserReceived)
+};
+
+var checkLike = function(user_id, song_id) {
+  //when retrieve user information call function onUserReceived
+  var onUserReceived = function(likeStatus){
+      window.global_likeStatus = likeStatus;
+      console.log(likeStatus);
+      unrating.className = showRating(window.global_likeStatus);
+  }
+
+  //retrieve user information
+  getResponse("checklike.php?user_id="+user_id+"&song_id="+song_id, onUserReceived);
+}
+
+var toggleLike = function(user_id, song_id) {
+  //when retrieve user information call function onUserReceived
+  var onUserReceived = function(likeStatus){
+      window.global_likeStatus = likeStatus;
+      if(likeStatus) {
+        like(global_user_id, currentSongCover.getAttribute("currentMusic_id"), ToggleRatingBtn);
+      } else {
+        unlike(global_user_id, currentSongCover.getAttribute("currentMusic_id"), ToggleRatingBtn);
+      }
+  }
+
+  //retrieve user information
+  getResponse("checklike.php?user_id="+user_id+"&song_id="+song_id, onUserReceived);
+}
 
 //window
 window.onload = function() {
-
+    checkLogin();
     currentSongCover = document.getElementById('cover');
 
     logoutBtn.addEventListener('click', function() {
       window.location.href = "query/logout.php";
     });
+
+    unrating.addEventListener('click', function() {
+      if(global_user_id > 0) {
+        toggleLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
+
+        // if(global_likeStatus) {
+        //   like(global_user_id, currentSongCover.getAttribute("currentMusic_id"), ToggleRatingBtn);
+        // } else {
+        //   unlike(global_user_id, currentSongCover.getAttribute("currentMusic_id"), ToggleRatingBtn);
+        // }
+      }
+    });
+
 
     //player
     playbtn.addEventListener('click', playOrPause,false);
@@ -322,6 +374,7 @@ function addEventForSongBlock() {
       addToPlayList(this);
       currentSong = 0;
       mytrack.src = playList[currentSong];
+      currentSongCover.setAttribute("currentMusic_id", this.getAttribute("music_id"));
       currentSongCover.src = songCover[currentSong];
       playOrPause();
 
@@ -376,6 +429,10 @@ function addToPlayList(element) {
     currentSong = 0;
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
+  }
+  currentSongCover.setAttribute("currentMusic_id", element.getAttribute("music_id"));
+  if(global_user_id > 0) {
+    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
   }
 }
 
@@ -467,11 +524,69 @@ function changeADWithBtn(i) {
   carousel();
 }
 
+function showRating(likeStatus) {
+  if(likeStatus) {
+    return "unrating";
+  } else {
+    return "rating";
+  }
+}
+
+var getResponse = function(method, callback){
+    var url = "query/"+method;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(evt){
+        if( xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200 ){
+            var result = JSON.parse(xhr.response);
+            callback(result);
+        }
+    }
+    xhr.open("GET", url)
+    xhr.send();
+};
+
+function ToggleRatingBtn() {
+  if(unrating.className == "unrating") {
+    unrating.className = "rating";
+  } else {
+     unrating.className = "unrating";
+  }
+}
+
+//unlike
+function unlike(user_id, song_id, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(evt){
+      if( xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200 ){
+          callback();
+      }
+  }
+  xhr.open("POST", "query/unlike.php")
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  var parameter = "user_id="+user_id+"&song_id="+song_id;
+  xhr.send(parameter);
+}
+
+//like
+function like(user_id, song_id, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(evt){
+      if( xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200 ){
+          callback();
+      }
+  }
+  xhr.open("POST", "query/like.php")
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  var parameter = "user_id="+user_id+"&song_id="+song_id;
+  xhr.send(parameter);
+}
+
 //Ajax
 function readLog(){
 	var xhr = new XMLHttpRequest();
   xhr.open("GET","home.php");
   xhr.onload = function(){
+      clearScript();
       post(xhr.responseText);
       setAD();
       addEventForSongBlock();
@@ -479,6 +594,19 @@ function readLog(){
   xhr.onerror = function() {alert("error!");};
   xhr.send();
 }
+
+function NewRelease(){
+	var xhr = new XMLHttpRequest();
+    xhr.open("GET","NewRelease.php");
+    xhr.onload = function() {
+        clearScript();
+        postMsg(xhr.responseText);
+        CreateNewReleaseScript();
+    };
+    xhr.onerror = function() {alert("error!");};
+    xhr.send();
+}
+
 function CreateNewReleaseScript() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(evt) {
@@ -492,31 +620,25 @@ function CreateNewReleaseScript() {
     xhr.onerror = function() {alert("error!");};
     xhr.send();
 }
-function NewRelease(){
-	var xhr = new XMLHttpRequest();
-    xhr.open("GET","NewRelease.php");
-    xhr.onload = function() {
-        postMsg(xhr.responseText);
-        CreateNewReleaseScript()
-    };
-    xhr.onerror = function() {alert("error!");};
-    xhr.send();
-}
+
 function Moods(){
 	var xhr = new XMLHttpRequest();
     xhr.open("GET","Moods.php");
     xhr.onload = function(){
-        postMsg(xhr.responseText);
+      clearScript();
+      postMsg(xhr.responseText);
     };
     xhr.onerror = function() {alert("error!");};
     xhr.send();
 }
+
 function Charts(){
 	 var xhr = new XMLHttpRequest();
     xhr.open("GET","Charts.php");
     xhr.onload = function(){
-        postMsg(xhr.responseText);
-        CreateChartsScript();
+      clearScript();
+      postMsg(xhr.responseText);
+      CreateChartsScript();
     };
     xhr.onerror = function() {alert("error!");};
     xhr.send();
@@ -535,6 +657,15 @@ function CreateChartsScript() {
     xhr.onerror = function() {alert("error!");};
     xhr.send();
 }
+
+function clearScript() {
+  var script = document.querySelectorAll("script");
+  var scriptLength = script.length;
+  for(var i = 1; i < scriptLength; i++) {
+    script[i].parentNode.removeChild(script[i]);
+  }
+}
+
 function post(msg){
     var x = document.getElementById("layout2");
     x.innerHTML = msg;

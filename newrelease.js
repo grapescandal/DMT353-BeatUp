@@ -21,6 +21,7 @@ function createNewreleaseList(newreleaseList) {
     container.getElementsByClassName("reclist")[0].alt = "Music/" + newreleaseList[i]["music_local"];
     container.getElementsByClassName("reclist")[0].src = "img/Album/" + newreleaseList[i]["picture_albums"];
     container.getElementsByClassName("musicName")[0].innerHTML = newreleaseList[i]["music_name"];
+    container.getElementsByClassName("reclist")[0].setAttribute("music_id", newreleaseList[i]["music_id"]);
     container.style.display = "block";
     container.getElementsByClassName("reclist")[0].addEventListener('click', addEventForNewrelease);
     container.getElementsByClassName("btnADlayout")[0].childNodes[1].addEventListener('click', addEventForNewrelease);
@@ -43,7 +44,12 @@ function addEventForNewrelease() {
   playList = clearPlayList();
   songCover = clearSongCover();
   clearPlayListNav();
-  addToPlayList(this.parentNode.getElementsByClassName("reclist")[0]);
+  if(this == this.parentNode.getElementsByClassName("reclist")[0]) {
+    addToPlayList(this.parentNode.getElementsByClassName("reclist")[0]);
+  } else {
+    addToPlayList(this.parentNode.parentNode.getElementsByClassName("reclist")[0]);
+
+  }
   currentSong = 0;
   mytrack.src = playList[currentSong];
   currentSongCover.src = songCover[currentSong];
@@ -68,5 +74,10 @@ function addToPlayList(element) {
     currentSong = 0;
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
+  }
+
+  currentSongCover.setAttribute("currentMusic_id", element.getAttribute("music_id"));
+  if(global_user_id > 0) {
+    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
   }
 }

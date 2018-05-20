@@ -16,7 +16,7 @@
         window.location.href = '../index.php';
       </script>";
     } else {
-      $connection = new mysqli($servername, $username, $password, $dbname);
+      $connection = mysqli_connect($servername, $username, $password, $dbname);
 
       $query_statment  = "SELECT user_email,password FROM user WHERE user_email = '$mail';";
       $query_result = mysqli_query($connection, $query_statment);
@@ -28,7 +28,7 @@
 
       if(count($result_user) <= 0) {
         $query_statment = "INSERT INTO user
-        (user_name,user_lastname,user_email,password) VALUE
+        (user_name,user_lastname,user_email,password) VALUES
         ('$firstname', '$lastname','$mail','$pass')";
         mysqli_query($connection, $query_statment);
 

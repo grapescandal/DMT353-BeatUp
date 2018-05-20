@@ -22,6 +22,7 @@ function createChartList(chartsList) {
     container.getElementsByClassName("reclisttable")[0].src = "img/Album/" + chartsList[i]["picture_albums"];
     container.getElementsByClassName("musicName")[0].innerHTML = chartsList[i]["music_name"];
     container.getElementsByClassName("artist")[0].innerHTML = chartsList[i]["music_artist"];
+    container.getElementsByClassName("reclisttable")[0].setAttribute("music_id", chartsList[i]["music_id"]);
     container.style.display = "table-row";
     container.getElementsByClassName("musicInfo")[0].addEventListener('click', addEventForChart);
     container.getElementsByClassName("musicName")[0].addEventListener('click', addEventForChart);
@@ -69,5 +70,10 @@ function addToPlayList(element) {
     currentSong = 0;
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
+  }
+
+  currentSongCover.setAttribute("currentMusic_id", element.getAttribute("music_id"));
+  if(global_user_id > 0) {
+    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
   }
 }

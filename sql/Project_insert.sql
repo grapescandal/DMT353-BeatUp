@@ -87,4 +87,15 @@ insert into play_list_info
 (2,4),
 (2,3);
 
-SELECT user_email,password FROM user;
+SELECT music_name,music_local, music_artist,upload_date,picture_albums, COUNT(`like`.user_id) FROM `like`
+        left join music
+        on `like`.music_id = music.music_id
+        left join albums_detail
+        on `like`.music_id = albums_detail.music_id
+        left join albums
+        on albums_detail.albums_id = albums.albums_id
+        GROUP BY music.music_id
+        ORDER BY COUNT(`like`.user_id) DESC LIMIT 10;
+        
+SELECT * FROM `like` ORDER BY user_id ASC;
+
