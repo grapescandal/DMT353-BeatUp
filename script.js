@@ -108,12 +108,8 @@ window.onload = function() {
     unrating.addEventListener('click', function() {
       if(global_user_id > 0) {
         toggleLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
-
-        // if(global_likeStatus) {
-        //   like(global_user_id, currentSongCover.getAttribute("currentMusic_id"), ToggleRatingBtn);
-        // } else {
-        //   unlike(global_user_id, currentSongCover.getAttribute("currentMusic_id"), ToggleRatingBtn);
-        // }
+      } else {
+        alert("Please login first.");
       }
     });
 
