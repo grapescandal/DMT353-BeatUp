@@ -73,7 +73,6 @@ var checkLike = function(user_id, song_id) {
   //when retrieve user information call function onUserReceived
   var onUserReceived = function(likeStatus){
       window.global_likeStatus = likeStatus;
-      console.log(likeStatus);
       unrating.className = showRating(window.global_likeStatus);
   }
 
@@ -372,6 +371,23 @@ function addEventForSongBlock() {
       songCover = clearSongCover();
       clearPlayListNav();
       addToPlayList(this);
+      currentSong = 0;
+      mytrack.src = playList[currentSong];
+      currentSongCover.setAttribute("currentMusic_id", this.getAttribute("music_id"));
+      currentSongCover.src = songCover[currentSong];
+      playOrPause();
+
+      if(!isPlayerShow) {
+        showPlayer("block");
+        isPlayerShow = true;
+      }
+    });
+
+    reclistAll[i].getElementsByClassName("musicName")[0].addEventListener('click', function() {
+      playList = clearPlayList();
+      songCover = clearSongCover();
+      clearPlayListNav();
+      addToPlayList(this.parentNode.parentNode.parentNode.getElementsByClassName("reclist")[0]);
       currentSong = 0;
       mytrack.src = playList[currentSong];
       currentSongCover.setAttribute("currentMusic_id", this.getAttribute("music_id"));

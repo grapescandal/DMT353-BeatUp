@@ -20,12 +20,12 @@ function createChartList(chartsList) {
     var container = document.getElementById("template_charts").cloneNode(true);
     container.getElementsByClassName("reclisttable")[0].alt = "Music/" + chartsList[i]["music_local"];
     container.getElementsByClassName("reclisttable")[0].src = "img/Album/" + chartsList[i]["picture_albums"];
-    container.getElementsByClassName("musicName")[0].innerHTML = chartsList[i]["music_name"];
+    container.getElementsByClassName("chartsMusicName")[0].innerHTML = chartsList[i]["music_name"];
     container.getElementsByClassName("artist")[0].innerHTML = chartsList[i]["music_artist"];
     container.getElementsByClassName("reclisttable")[0].setAttribute("music_id", chartsList[i]["music_id"]);
     container.style.display = "table-row";
     container.getElementsByClassName("musicInfo")[0].addEventListener('click', addEventForChart);
-    container.getElementsByClassName("musicName")[0].addEventListener('click', addEventForChart);
+    container.getElementsByClassName("chartsMusicName")[0].addEventListener('click', addEventForChart);
 
     //add to playlist
     container.childNodes[9].addEventListener('click', function() {

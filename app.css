@@ -217,11 +217,33 @@ input{
     align-items: center;
     justify-content: center;
 }
-.song{
+.nameSong{
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: 'Prompt', sans-serif;
 }
-.song:hover {
-  user-select: none;
+.musicName{
+    user-select: none;
+    cursor: pointer;
+    /* width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  */
+    font-family: 'Prompt', sans-serif;
+}
+
+.musicName:hover {
+  white-space: nowrap;
+  /* Starting position */
+  -moz-transform:translateX(50%);
+  -webkit-transform:translateX(50%);
+  transform:translateX(50%);
+  /* Apply animation to this element */
+  -moz-animation: example1 2s linear infinite;
+  -webkit-animation: example1 2s linear infinite;
+  animation: example1 2s linear infinite;
 }
 span{
     font-family: 'Prompt', sans-serif;
@@ -748,7 +770,7 @@ span.psw {
  100% { -moz-transform: translateX(-70%); }
 }
 @-webkit-keyframes example1 {
- 0%   { -webkit-transform: translateX(50%); }
+ 0%   { -webkit-transform: translateX(0%); }
  100% { -webkit-transform: translateX(-70%); }
 }
 
@@ -773,6 +795,11 @@ th, td {
     text-align: center;
 
     color: white;
+}
+
+th {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 table {
@@ -802,7 +829,7 @@ table {
   user-select: none;
 }
 
-.musicName {
+.chartsMusicName {
   cursor: pointer;
   user-select: none;
 }
@@ -810,4 +837,9 @@ table {
 .artist {
   cursor: pointer;
   user-select: none;
+}
+
+#currentTime {
+  width: 35px;
+  text-align: center;
 }

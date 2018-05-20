@@ -8,15 +8,15 @@ insert into user
 ('binarynman','helloworld','binarynman@email.com','789qwe');
 insert into music 
 (music_name,music_artist,music_moods,music_genres,music_local, upload_date,user_id) values
-('First Lady','Peck Palitchok',3,3, 'First Lady - Pek Palit.mp3',2),
-('GALAXY','D Gerrard',2,3,'GALAXY - D GERRARD ft. Kob The X Factor.mp3',3),
-('Good morning teacher','Atom',1,3,'Good Morning Teacher.mp3',0),
-('มะงึกๆอุ๋งๆ','ORNLY YOU',3,1,'ORNLY YOU.mp3',1),
-('Shonichi','BNK48',3,1,'Shonichi - BNK48.mp3',0),
-('นอนได้แล้ว','THE TOYS',4,3,'นอนได้แล้ว - THE TOYS feat. ฟักกลิ้ง ฮีโร่.mp3',1),
-('ภาพจำ','ป็อป ปองกูล',1,3,'ภาพจำ - ป๊อป ปองกูล.mp3',2),
-('ร้อยล้านวิว','STAMP',1,1,'ร้อยล้านวิว - STAMP.mp3',3),
-('ระหว่างที่เธอจะจากไป','ว่าน ธนกฤต feat.Moving and Cut',1,3,'ระหว่างที่เธอจะจากไป -  Wan Soloist feat.Moving and Cut.mp3',4);
+('First Lady','Peck Palitchok',3,3, 'First Lady - Pek Palit.mp3','2018-02-04',2),
+('GALAXY','D Gerrard',2,3,'GALAXY - D GERRARD ft. Kob The X Factor.mp3','2018-03-29',3),
+('Good morning teacher','Atom',1,3,'Good Morning Teacher.mp3','2018-03-14',0),
+('มะงึกๆอุ๋งๆ','ORNLY YOU',3,1,'ORNLY YOU.mp3','2018-04-20',1),
+('Shonichi','BNK48',3,1,'Shonichi - BNK48.mp3','2018-05-01',0),
+('นอนได้แล้ว','THE TOYS',4,3,'นอนได้แล้ว - THE TOYS feat. ฟักกลิ้ง ฮีโร่.mp3','2018-02-04',1),
+('ภาพจำ','ป็อป ปองกูล',1,3,'ภาพจำ - ป๊อป ปองกูล.mp3','2018-02-10',2),
+('ร้อยล้านวิว','STAMP',1,1,'ร้อยล้านวิว - STAMP.mp3','2018-04-04',3),
+('ระหว่างที่เธอจะจากไป','ว่าน ธนกฤต feat.Moving and Cut',1,3,'ระหว่างที่เธอจะจากไป -  Wan Soloist feat.Moving and Cut.mp3','2018-05-18',4);
 insert into genres
 (genres_name) values
 ('Pop'),
