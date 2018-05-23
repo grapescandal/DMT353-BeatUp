@@ -249,7 +249,10 @@ input{
 span{
     font-family: 'Prompt', sans-serif;
 }
-
+#currentTime{
+    width: 35px;
+    text-align: center;
+}
 .playlistBlock {
   display: block;
   cursor: pointer;
