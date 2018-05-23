@@ -37,6 +37,39 @@
                 <img class="icon" src="img/search.png"/>
                 <input type="text" placeholder="Search" />
             </div>
+
+         <div id="id04" class="modalserch">   
+                <div class="modal-content4">
+
+                    <table class"fontblack" id="searchTable">
+                            <tr>
+                                    <th id"fontblack">#</th>
+                                    <th class"fontblack">ALBUM</th>
+                                    <th class"fontblack">TITLE</th>
+                                    <th class"fontblack">ARTIST</th>
+                                    <th class"fontblack"> ADD PLAYLIST </th>
+
+                            </tr>
+                            <tr class="chart" id="template_search" style = "display:;">
+                                            <td class="counterCell"></td>
+                                            <td class="musicInfo"><img class="reclisttable" src="img/Album/wan-01.png" alt="Music/ระหว่างที่เธอจะจากไป -  Wan Soloist feat.Moving and Cut.mp3" music_id="9"/></td>
+                                            <td class="chartsMusicName"><p>ระหว่างที่เธอจะจากไป</p></td>
+                                            <td class="artist"><p>ว่าน ธนกฤต feat.Moving and Cut</p></td>
+                                            <td class="addToPlayListBtn"> <button type="button" id="addToPlayListbtnsseacrh"></button> </td>
+                            </tr>
+                    </table>
+
+
+
+
+
+
+
+
+                </div>
+             </div>
+
+
             <div class="nav-right">
                 <button onclick="document.getElementById('id01').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Log in</button>
 								<p><?php echo $username ?></p>
