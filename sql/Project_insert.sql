@@ -135,4 +135,4 @@ left join albums_detail
 on music.music_id = albums_detail.music_id
 left join albums
 on albums_detail.albums_id = albums.albums_id
-where music_name LIKE '%$shonichi%' OR music_artist LIKE '%$input%' OR albums_name LIKE '%$input%';
+where music_name LIKE '%new single%' OR music_artist LIKE '%new single%' OR albums_name LIKE '%new single%';
