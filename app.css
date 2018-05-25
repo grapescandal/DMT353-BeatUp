@@ -2,7 +2,6 @@ body{
     background:linear-gradient(141deg, #4c31f5 0%,#b68be5  75%);
     background-attachment: fixed;
     /* text-align: center; */
-
     margin: 0;
     font-family: 'Fira Sans', sans-serif;
 }
@@ -204,7 +203,7 @@ input{
     font-family: 'Fira Sans', sans-serif;
 }
 .nav-right > a{
-    padding-left: 10px;
+    /* padding-left: 10px; */
     color: white;
     text-decoration: none;
 }
@@ -549,6 +548,14 @@ input[name="uname"],input[name="lname"], input[name="password"], input[name="rep
     color: white;
     font-family: 'Fira Sans', sans-serif;
     font-size: 17px;
+    padding: 10px;
+}
+.userlogin{
+  font-family: 'Prompt', sans-serif;
+  cursor: default;
+  font-size: 17px;
+  padding: 10px;
+  color: white;
 }
 
 /* Set a style for all buttons */
@@ -683,9 +690,11 @@ span.psw {
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     /* border: 1px solid #888; */
     border-radius: 10px;
-    width: 50%; /* Could be mormore or less, depending on screen size */
+    width: 1000px;
+    height: 550px;/* Could be mormore or less, depending on screen size */
     /* text-align: center; */
     box-shadow: 0px 5px 20px 2px rgba(0,0,0,0.2);
+    overflow: auto;
 }
 /* The Close Button (x) */
 .close {
@@ -789,6 +798,10 @@ span.psw {
     width: 15%;
     align-items: center;
     border-radius: 30px;
+    outline: none;
+}
+.detail > p{
+  cursor: pointer;
 }
 
 .uploadbtnpic {
@@ -798,7 +811,7 @@ span.psw {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-
+    outline: none;
     align-items: center;
     border-radius: 30px;
 }
@@ -855,11 +868,11 @@ ol{
 }
 
 th, td {
+    cursor: context-menu;
     padding-left: 35px;
     padding-right: 35px;
     text-align: center;
-
-
+    font-family: 'Prompt', sans-serif;
 }
 .fontwhite{
     color: white;
@@ -899,11 +912,12 @@ table {
 
 .chartsMusicName {
   cursor: pointer;
+  width: 300px;
   user-select: none;
 }
 
 .artist {
-  cursor: pointer;
+  /* cursor: context-menu; */
   user-select: none;
 }
 

@@ -288,6 +288,7 @@ function playOrPause() {
     if(!mytrack.paused && !mytrack.ended){
       pause();
     } else {
+      increseView(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
       play();
     }
 }
@@ -479,11 +480,6 @@ function addEventForSongBlock() {
       musicNameList = clearMusicName();
       clearPlayListNav();
       addToPlayList(this);
-      currentSong = 0;
-      mytrack.src = playList[currentSong];
-      currentSongCover.setAttribute("currentMusic_id", this.getAttribute("music_id"));
-      currentSongCover.src = songCover[currentSong];
-      currentSongName.text = musicNameList[currentSong];
       playOrPause();
 
       if(!isPlayerShow) {
@@ -498,11 +494,6 @@ function addEventForSongBlock() {
       musicNameList = clearMusicName();
       clearPlayListNav();
       addToPlayList(this.parentNode.parentNode.parentNode.getElementsByClassName("reclist")[0]);
-      currentSong = 0;
-      mytrack.src = playList[currentSong];
-      currentSongCover.setAttribute("currentMusic_id", this.getAttribute("music_id"));
-      currentSongCover.src = songCover[currentSong];
-      currentSongName.text = musicNameList[currentSong];
       playOrPause();
 
       if(!isPlayerShow) {
@@ -535,7 +526,6 @@ function changeCurrentSong(songIndex){
   mytrack.src = playList[currentSong];
   currentSongCover.src = songCover[currentSong];
   currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
-  increseView(global_user_id, currentSongCover.getAttribute("currentMusic_id"), readChart);
   currentSongName.text = musicNameList[currentSong];
   if(global_user_id > 0) {
     checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
@@ -544,17 +534,21 @@ function changeCurrentSong(songIndex){
 }
 
 function addToPlayList(element) {
-  increseView(global_user_id, element.getAttribute("music_id"));
   var index = playList.indexOf(element.alt);
   if(index < 0) {
     playList.push(element.alt);
     songCover.push(element.src);
     musicNameList.push(element.getAttribute("music_name"));
+    musicIdList.push(element.getAttribute("music_id"));
 
     addToPlaylistNav(playList);
   }
 
   if(playList.length < 2 && index < 0) {
+    playList.push(element.alt);
+    songCover.push(element.src);
+    musicNameList.push(element.getAttribute("music_name"));
+    musicIdList.push(element.getAttribute("music_id"));
     currentSong = 0;
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];

@@ -23,13 +23,11 @@ insert into genres
 ('Rock'),
 ('R&B'),
 ('Jass'),
-('Hiphop'),
-('Acoustic'),
 ('Indy');
 insert into moods
 (moods_name) values
-('Sad'),
-('Love'),
+('Sadly'),
+('Alone'),
 ('Happy'),
 ('Relax');
 insert into albums
@@ -124,11 +122,11 @@ select * from beat_up.albums_detail;
 
 select * from moods;
 
-SELECT music.music_id, music_name,music_local,music_artist,picture_albums FROM music
+SELECT music.music_id, music_name,music_local,music_artist,picture_albums, music_genres	  FROM music
   left join albums_detail
   on music.music_id = albums_detail.music_id
   left join albums
-  on albums_detail.albums_id = albums.albums_id WHERE music_genres = 2 OR music_moods = 0;
+  on albums_detail.albums_id = albums.albums_id WHERE music_genres = 2;
 
 select music_name,music_local,music_artist,picture_albums FROM music
 left join albums_detail
@@ -136,3 +134,6 @@ on music.music_id = albums_detail.music_id
 left join albums
 on albums_detail.albums_id = albums.albums_id
 where music_name LIKE '%new single%' OR music_artist LIKE '%new single%' OR albums_name LIKE '%new single%';
+
+
+SELECT music.music_id, music_name,music_local,music_artist, music_genres, music_moods FROM music;

@@ -32,7 +32,7 @@ function createChartList(chartsList) {
     container.getElementsByClassName("chartsMusicName")[0].addEventListener('click', addEventForChart);
 
     //add to playlist
-    container.childNodes[9].addEventListener('click', function() {
+    container.childNodes[13].addEventListener('click', function() {
       addToPlayList(this.parentNode.getElementsByClassName("reclisttable")[0]);
 
       if(!isPlayerShow) {

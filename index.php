@@ -73,8 +73,8 @@
 
 
             <div class="nav-right">
+								<p class="userlogin"><?php echo $username ?></p>
                 <button onclick="document.getElementById('id01').style.display='block'" class="flo" style = "display: <?php echo $_SESSION['login']?>">Log in</button>
-								<p><?php echo $username ?></p>
 								<button type="submit" class="flo" id="logoutBtn" style = "display: <?php echo $_SESSION['logout']?>">Logout</button>
                 <a>|</a>
 								<button onclick="document.getElementById('id03').style.display='block'" type="submit" class="flo" id="uploadsBtn" style = "display: <?php echo $_SESSION['logout']?>">Uploads</button>
@@ -146,6 +146,7 @@
                                 <div class="containerup1">
                                                 <div class="containerupload ">
 																																<input type="file" name="picToUpload" id="picToUpload" placeholder="" style = "display:none">
+																																<p>Upload Picture</p>
                                                                 <div id="displayPic">
 																																		<div class="layoutCenter">
 																																			<img class="addPicture" id="pictureUpload" src="img/plusblack.png">
@@ -165,11 +166,10 @@
                                          <div class="custom-select">
                                                 <select name="moodsSelect" required>
                                                         <option value="">Select Moods:</option>
-                                                        <option value="1">Romance</option>
-                                                        <option value="2">Chill</option>
-                                                        <option value="3">Sadly</option>
-                                                        <option value="4">Alone</option>
-																												<option value="5">Happy</option>
+                                                        <option value="1">Sadly</option>
+                                                        <option value="2">Alone</option>
+                                                        <option value="3">Happy</option>
+                                                        <option value="4">Relax</option>
                                                 </select>
                                          </div>
 
@@ -177,12 +177,10 @@
                                          <div class="custom-select">
                                                  <select name="genresSelect" required>
                                                    <option value="">Select Genres:</option>
-                                                   <option value="1">Rock</option>
-                                                   <option value="2">Pop</option>
-                                                   <option value="3">Jazz</option>
-                                                   <option value="4">R&B</option>
-																									 <option value="5">Indy</option>
-																									 <option value="6">Acoustic</option>
+                                                   <option value="1">Pop</option>
+                                                   <option value="2">Rock</option>
+                                                   <option value="3">R&B</option>
+																									 <option value="4">Indy</option>
                                                  </select>
                                                </div>
                                         </div>
@@ -220,7 +218,7 @@
 
         <!-- player -->
 
-        <div id="wrapper">
+        <div id="wrapper" class="animate">
             <div class="player">
                 <nav>
                     <div class="player2">
