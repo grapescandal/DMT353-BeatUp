@@ -7,6 +7,7 @@ function initButton() {
     categoriesBtn[i].addEventListener('click', function() {
       var music_genres = this.getElementsByClassName("reclist")[0].getAttribute("music_genres");
       var music_moods = this.getElementsByClassName("reclist")[0].getAttribute("music_moods");
+      var music_categories = this.getElementsByTagName("p")[0].innerHTML;
       if(music_genres == null) {
         music_genres = 0;
       }
@@ -14,13 +15,16 @@ function initButton() {
       if(music_moods == null) {
         music_moods = 0;
       }
-      readCategories(music_genres, music_moods);
+      readCategories(music_genres, music_moods, music_categories);
     });
   }
 }
 
-var readCategories = function(music_genres, music_moods) {
-
+var readCategories = function(music_genres, music_moods, music_categories) {
+  var headGenres = document.getElementById("headGenres");
+  headGenres.innerHTML =  music_categories;
+  var headCategories = document.getElementById("headCategories");
+  headCategories.style.display = "block";
   clearCategories();
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(evt) {
