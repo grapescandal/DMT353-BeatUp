@@ -134,6 +134,13 @@ window.onload = function() {
       }
     });
 
+    var clearPlayListBtn = document.getElementById("trash");
+    clearPlayListBtn.addEventListener('click', function() {
+      clearPlayList();
+      clearSongCover();
+      clearMusicName();
+      clearPlayListNav();
+    });
 
     //player
     playbtn.addEventListener('click', playOrPause,false);
@@ -514,6 +521,7 @@ function changeCurrentSong(songIndex){
   mytrack.src = playList[currentSong];
   currentSongCover.src = songCover[currentSong];
   currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
+  increseView(global_user_id, currentSongCover.getAttribute("currentMusic_id"), readChart);
   currentSongName.text = musicNameList[currentSong];
   if(global_user_id > 0) {
     checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
