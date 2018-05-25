@@ -21,7 +21,7 @@
   $query_statment =
       "INSERT INTO `like`
       (user_id, music_id) VALUES
-      ('$user_id','$music_id');";
+      ($user_id, $music_id);";
 
   mysqli_query($connection, $query_statment);
 ?>

@@ -58,10 +58,15 @@ body{
 
 .uploadbox{
     width: 650px;
-    height: 520px;
+    height: 550px;
     background-color: white ;
     border-radius: 10px;
     box-shadow: 0px 5px 20px 2px rgba(0,0,0,0.2);
+}
+.addPicture{
+  width: 50px;
+  height: 50px;
+  text-align: center;
 }
 
 hr{
@@ -520,7 +525,7 @@ nav{
 
 /* login */
 /* Full-width input fields */
-input[name="uname"],input[name="lname"], input[name="password"], input[name="repassword"],input[name="email"],input[name="Confirmemail"], input[name="birthdate"], input[name="unamesong"],input[name="ati"] {
+input[name="uname"],input[name="lname"], input[name="password"], input[name="repassword"],input[name="email"],input[name="Confirmemail"], input[name="birthdate"], input[name="musicName"],input[name="musicArtist"],input[name="musicAlbumName"] {
     width: 100%;
     height: 30px;
     padding: 12px 20px;
@@ -578,7 +583,7 @@ button:hover {
 .imgcontainersunmit {
     text-align: center;
 
-    margin: 24px 0 12px 0;
+    margin: 0px 0 12px 0;
     position: relative;
 }
 
@@ -620,8 +625,8 @@ span.psw {
     padding-top: 60px;
 }
 
-.modalserch {
-    display: none; 
+.modalsearch {
+    display: none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -742,11 +747,22 @@ span.psw {
 	/*display: inline-block;*/
 	width:150px;
 	height: 150px;
-	border: 2px solid black;
+	/* border: 1px solid black; */
+  background-color: rgb(224, 224, 224);
+  border-radius: 10px;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+
 
 	/*background-color: #94A5AC;*/
 }
-
+.layoutCenter{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
 .custom-select {
     position: relative;
     margin-bottom: 10px;
@@ -790,7 +806,7 @@ span.psw {
     display: flex;
     flex-flow: column;
 
-    margin-top: 30px;
+    /* margin-top: 30px; */
     justify-content: center;
 
     align-items: center;
@@ -840,7 +856,7 @@ th, td {
     padding-right: 35px;
     text-align: center;
 
-    
+
 }
 .fontwhite{
     color: white;
@@ -891,4 +907,8 @@ table {
 #currentTime {
   width: 35px;
   text-align: center;
+}
+
+.chart {
+  color: white;
 }

@@ -64,13 +64,13 @@ insert into `like`
 (3, 5),
 (4, 8);
 insert into view
-(user_id,music_id,view_datetime) values
-(1,3,'2018-04-18 11:45:08'),
-(2,1,'2018-04-10 09:49:02'),
-(3,3,'2018-03-05 02:15:05'),
-(4,4,'2018-03-02 01:20:06'),
-(5,3,'2018-02-23 06:33:07'),
-(5,1,'2018-01-15 09:25:04');
+(user_id,music_id) values
+(1,3),
+(2,1),
+(3,3),
+(4,4),
+(5,3),
+(5,1);
 insert into play_list
 (play_list_name,user_id) values
 ('01',1),
@@ -86,16 +86,39 @@ insert into play_list_info
 (2,5),
 (2,4),
 (2,3);
+SELECT music.music_id, music_name,music_local, music_artist,upload_date,picture_albums, COUNT(view.user_id) AS viewCount,COUNT(`like`.user_id) AS likeCount FROM music
+left join albums_detail
+on music.music_id = albums_detail.music_id
+left join albums
+on albums_detail.albums_id = albums.albums_id
+left join `like`
+on music.music_id = `like`.music_id
+left join view
+on music.music_id = view.music_id
+GROUP BY music.music_id
+ORDER BY COUNT(view.user_id) DESC LIMIT 10;
 
-SELECT music.music_id, music_name,music_local, music_artist,upload_date,picture_albums, COUNT(`like`.user_id) FROM `like`
-        left join music
-        on `like`.music_id = music.music_id
+SELECT music.music_id, music_name,music_local, music_artist,upload_date,picture_albums FROM music
+left join albums_detail
+on music.music_id = albums_detail.music_id
+left join albums
+on albums_detail.albums_id = albums.albums_id
+left join `like`
+on music.music_id = `like`.music_id
+left join view
+on music.music_id = view.music_id
+order by music_id;
+
+SELECT  music.music_id, music.music_name, music.music_local, music.music_artist, music.upload_date, albums.picture_albums, COUNT(view.user_id) as viewCount FROM music
+		left join view
+        on view.music_id = music.music_id
         left join albums_detail
-        on `like`.music_id = albums_detail.music_id
+        on music.music_id = albums_detail.music_id
         left join albums
         on albums_detail.albums_id = albums.albums_id
         GROUP BY music.music_id
-        ORDER BY COUNT(`like`.user_id) DESC LIMIT 10;
+        ORDER BY COUNT(view.user_id) DESC LIMIT 10;
         
-SELECT * FROM `like` ORDER BY user_id ASC;
-
+select * from beat_up.music;
+select * from beat_up.albums;
+select * from beat_up.albums_detail;

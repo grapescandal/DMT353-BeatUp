@@ -6,6 +6,7 @@ var currentSong = 0;
 var playList = [];
 var songCover = [];
 var musicIdList = [];
+var musicNameList = [];
 var playListEnded;
 
 //All button
@@ -23,6 +24,7 @@ var playerSongName = document.getElementById('song');
 var duration = document.getElementById('fullDuration');
 var currentTime = document.getElementById('currentTime');
 var currentSongCover;
+var currentSongName;
 var minutes;
 var seconds;
 var isPlayerShow = false;
@@ -59,9 +61,12 @@ var logoutBtn = document.getElementById("logoutBtn");
 var global_user_id = 0;
 var global_likeStatus = false;
 
+var musicPath = "";
+var picPath = "";
+
 var checkLogin = function(){
     //when retrieve user information call function onUserReceived
-    var onUserReceived = function(userInformation){
+    var onUserReceived = function(userInformation) {
         var username = userInformation.username;
         window.global_user_id = userInformation.userId;
     }
@@ -79,7 +84,7 @@ var checkLike = function(user_id, song_id) {
 
   //retrieve user information
   getResponse("checklike.php?user_id="+user_id+"&song_id="+song_id, onUserReceived);
-}
+};
 
 var toggleLike = function(user_id, song_id) {
   //when retrieve user information call function onUserReceived
@@ -87,10 +92,16 @@ var toggleLike = function(user_id, song_id) {
       window.global_likeStatus = likeStatus;
       if(likeStatus) {
         like(global_user_id, currentSongCover.getAttribute("currentMusic_id"), ToggleRatingBtn);
+        if(window.location.hash.indexOf("Charts") > -1) {
+          readChart();
+        }
       } else {
         unlike(global_user_id, currentSongCover.getAttribute("currentMusic_id"), ToggleRatingBtn);
+        if(window.location.hash.indexOf("Charts") > -1) {
+          readChart();
+        }
       }
-  }
+  };
 
   //retrieve user information
   getResponse("checklike.php?user_id="+user_id+"&song_id="+song_id, onUserReceived);
@@ -100,6 +111,16 @@ var toggleLike = function(user_id, song_id) {
 window.onload = function() {
     checkLogin();
     currentSongCover = document.getElementById('cover');
+    currentSongName = document.getElementById('song');
+
+    var uploadMusicBtn = document.getElementById("uploadmusic");
+    uploadMusicBtn.addEventListener("click", fileUpload);
+
+    var uploadpicBtn = document.getElementById("displayPic");
+    uploadpicBtn.addEventListener("click", picUpload);
+
+    var submitBtn = document.getElementById("submitBtn");
+    submitBtn.addEventListener("click", writePath);
 
     logoutBtn.addEventListener('click', function() {
       window.location.href = "query/logout.php";
@@ -186,6 +207,61 @@ window.onclick = function(event) {
     }
 }
 
+//upload
+function fileUpload() {
+  var filefield = document.getElementById("fileToUpload");
+  filefield.click();
+  filefield.onchange = fileSubmit;
+}
+
+function picUpload() {
+  var filefield = document.getElementById("picToUpload");
+  filefield.click();
+  filefield.onchange = fileSubmit2;
+}
+
+
+function fileSubmit() {
+  getMusicfilePath();
+}
+
+function fileSubmit2() {
+  getPicfilePath();
+  var picture = document.getElementById("pictureUpload");
+  picture.src = "img/check.png";
+}
+
+function getMusicfilePath() {
+	 musicPath = document.getElementById("fileToUpload").files[0].name;
+}
+
+function getPicfilePath() {
+	 picPath = document.getElementById("picToUpload").files[0].name;
+}
+
+function writePath(){
+  var musicName =  document.forms["uploadForm"]["musicName"].value;
+  var musicArtist = document.forms["uploadForm"]["musicArtist"].value;
+  var musicMoods = document.forms["uploadForm"]["moodsSelect"].value;
+  var musicGenres = document.forms["uploadForm"]["genresSelect"].value;
+  var musicAlbumName = document.forms["uploadForm"]["musicAlbumName"].value;
+
+  if(musicName !== "" && musicArtist !== "" && musicMoods !== "" && musicGenres !== "" && musicAlbumName !== "" && musicPath != false && picPath != false) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(evt){
+      if( xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200 ){
+        document.getElementById("uploadForm").submit();
+      }
+    }
+
+    xhr.open("POST", "query/writePath.php");
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var parameter = "music_name=" + musicName + "&music_artist=" + musicArtist +  "&music_file=" + musicPath + "&music_moods=" + musicMoods +
+    "&music_genres=" + musicGenres + "&albums_name=" + musicAlbumName + "&picture_albums=" + picPath +"&user_id=" + global_user_id ;
+    xhr.send(parameter);
+  }
+}
+
 //Button
 function playOrPause() {
     if(!mytrack.paused && !mytrack.ended){
@@ -245,20 +321,18 @@ function nextSong() {
   if(currentSong < playList.length) {
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
-    currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
-    if(global_user_id > 0) {
-      checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
-    }
     playOrPause();
   } else {
     currentSong = Math.abs(currentSong) % playList.length;
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
-    currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
-    if(global_user_id > 0) {
-      checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
-    }
     playOrPause();
+  }
+
+  currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
+  currentSongName.text = musicNameList[currentSong];
+  if(global_user_id > 0) {
+    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
   }
 }
 
@@ -273,11 +347,13 @@ function prevSong() {
   if(currentSong < playList.length) {
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
-    currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
-    if(global_user_id > 0) {
-      checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
-    }
     playOrPause();
+  }
+
+  currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
+  currentSongName.text = musicNameList[currentSong];
+  if(global_user_id > 0) {
+    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
   }
 }
 
@@ -319,8 +395,8 @@ function update() {
 }
 
 function checkDuration(songDuration) {
-  var songName = getSongName(playList[currentSong]);
-  playerSongName.innerHTML = songName.replace(/%20/g, " ");
+  var songName = musicNameList[currentSong];
+  playerSongName.innerHTML = songName;
 
   if(isNaN(songDuration)) {
     minutes = 0;
@@ -379,12 +455,14 @@ function addEventForSongBlock() {
     reclistAll[i].childNodes[1].addEventListener('click', function() {
       playList = clearPlayList();
       songCover = clearSongCover();
+      musicNameList = clearMusicName();
       clearPlayListNav();
       addToPlayList(this);
       currentSong = 0;
       mytrack.src = playList[currentSong];
       currentSongCover.setAttribute("currentMusic_id", this.getAttribute("music_id"));
       currentSongCover.src = songCover[currentSong];
+      currentSongName.text = musicNameList[currentSong];
       playOrPause();
 
       if(!isPlayerShow) {
@@ -396,12 +474,14 @@ function addEventForSongBlock() {
     reclistAll[i].getElementsByClassName("musicName")[0].addEventListener('click', function() {
       playList = clearPlayList();
       songCover = clearSongCover();
+      musicNameList = clearMusicName();
       clearPlayListNav();
       addToPlayList(this.parentNode.parentNode.parentNode.getElementsByClassName("reclist")[0]);
       currentSong = 0;
       mytrack.src = playList[currentSong];
       currentSongCover.setAttribute("currentMusic_id", this.getAttribute("music_id"));
       currentSongCover.src = songCover[currentSong];
+      currentSongName.text = musicNameList[currentSong];
       playOrPause();
 
       if(!isPlayerShow) {
@@ -427,13 +507,6 @@ function showPlayer(string) {
   setVolume();
 }
 
-function getSongName(songName) {
-  var newSongName = songName.replace('Music/', '');
-  newSongName = newSongName.replace('.mp3', '');
-
-  return newSongName;
-}
-
 function changeCurrentSong(songIndex){
   mytrack.pause();
   currentSong = Number(songIndex);
@@ -441,6 +514,7 @@ function changeCurrentSong(songIndex){
   mytrack.src = playList[currentSong];
   currentSongCover.src = songCover[currentSong];
   currentSongCover.setAttribute("currentMusic_id", musicIdList[currentSong]);
+  currentSongName.text = musicNameList[currentSong];
   if(global_user_id > 0) {
     checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
   }
@@ -448,11 +522,12 @@ function changeCurrentSong(songIndex){
 }
 
 function addToPlayList(element) {
+  increseView(global_user_id, element.getAttribute("music_id"), readChart);
   var index = playList.indexOf(element.alt);
   if(index < 0) {
     playList.push(element.alt);
     songCover.push(element.src);
-    musicIdList.push(element.getAttribute("music_id"));
+    musicNameList.push(element.getAttribute("music_name"));
 
     addToPlaylistNav(playList);
   }
@@ -462,9 +537,12 @@ function addToPlayList(element) {
     mytrack.src = playList[currentSong];
     currentSongCover.src = songCover[currentSong];
     currentSongCover.setAttribute("currentMusic_id", element.getAttribute("music_id"));
-    if(global_user_id > 0) {
-      checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
-    }
+  }
+
+  currentSongName.text = musicNameList[currentSong];
+
+  if(global_user_id > 0) {
+    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
   }
 }
 
@@ -477,7 +555,7 @@ function addToPlaylistNav(playList) {
     playlistChild.id = i;
     playlistChildBlock.className = "playlistBlock";
     playlistChild.className = "playlistChild";
-    playlistChild.text = getSongName(playList[i]);
+    playlistChild.text = musicNameList[i];
     playlistChildBlock.addEventListener('click', function() {
     changeCurrentSong(playlistChild.id);
   }, true);
@@ -498,6 +576,10 @@ function clearPlayList() {
 
 function clearSongCover() {
   return songCover = [];
+}
+
+function clearMusicName() {
+  return musicName = [];
 }
 
 function clearPlayListNav() {
@@ -612,6 +694,24 @@ function like(user_id, song_id, callback) {
   xhr.send(parameter);
 }
 
+//view
+var increseView = function (user_id, song_id, callback) {
+  if(user_id > 0) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(evt){
+        if( xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200 ){
+            if(window.location.hash.indexOf("Charts") > -1) {
+              callback();
+            }
+        }
+    }
+    xhr.open("POST", "query/view.php")
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var parameter = "user_id="+user_id+"&song_id="+song_id;
+    xhr.send(parameter);
+  }
+}
+
 //Ajax
 function readLog(){
 	var xhr = new XMLHttpRequest();
@@ -619,6 +719,7 @@ function readLog(){
   xhr.onload = function(){
       clearScript();
       post(xhr.responseText);
+      window.location.hash = 'home';
       setAD();
       addEventForSongBlock();
   };
@@ -632,6 +733,7 @@ function NewRelease(){
     xhr.onload = function() {
         clearScript();
         postMsg(xhr.responseText);
+        window.location.hash = 'NewRelease';
         CreateNewReleaseScript();
     };
     xhr.onerror = function() {alert("error!");};
@@ -657,6 +759,7 @@ function Moods(){
     xhr.open("GET","Moods.php");
     xhr.onload = function(){
       clearScript();
+      window.location.hash = 'Categories';
       postMsg(xhr.responseText);
     };
     xhr.onerror = function() {alert("error!");};
@@ -668,6 +771,7 @@ function Charts(){
     xhr.open("GET","Charts.php");
     xhr.onload = function(){
       clearScript();
+      window.location.hash = 'Charts';
       postMsg(xhr.responseText);
       CreateChartsScript();
     };

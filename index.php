@@ -38,7 +38,7 @@
                 <input type="text" placeholder="Search" />
             </div>
 
-         <div id="id04" class="modalserch">   
+         <div id="modalsearch" class="modalsearch">
                 <div class="modal-content4">
 
                     <table class"fontblack" id="searchTable">
@@ -52,7 +52,7 @@
                             </tr>
                             <tr class="chart" id="template_search" style = "display:;">
                                             <td class="counterCell"></td>
-                                            <td class="musicInfo"><img class="reclisttable" src="img/Album/wan-01.png" alt="Music/ระหว่างที่เธอจะจากไป -  Wan Soloist feat.Moving and Cut.mp3" music_id="9"/></td>
+                                            <td class="musicInfo"><img class="reclisttable" src="uploads/Album/wan-01.png" alt="uploads/Music/ระหว่างที่เธอจะจากไป -  Wan Soloist feat.Moving and Cut.mp3" music_id="9"/></td>
                                             <td class="chartsMusicName"><p>ระหว่างที่เธอจะจากไป</p></td>
                                             <td class="artist"><p>ว่าน ธนกฤต feat.Moving and Cut</p></td>
                                             <td class="addToPlayListBtn"> <button type="button" id="addToPlayListbtnsseacrh"></button> </td>
@@ -133,12 +133,8 @@
 
 
               <div id="id03" class="modal">
-
-
-
-
                     <div class="modal-content3">
-                            <form class="uploadbox animate" action="index.php">
+                            <form id="uploadForm" class="uploadbox animate" action="query/upload.php" method="post" enctype="multipart/form-data"/ name="uploadForm">
                                 <div class="imgcontainer">
                                         <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
                                     </div>
@@ -146,61 +142,52 @@
                                         <p>Upload</p>
                                 </div>
                                 <div class="containerup1">
-
                                                 <div class="containerupload ">
+																																<input type="file" name="picToUpload" id="picToUpload" placeholder="" style = "display:none">
                                                                 <div id="displayPic">
-
-                                                                        </div>
-                                                                <button type="submit" id="uploadpic" class="uploadbtnpic ">UploadPicture</button>
-                                                                <button type="submit" id="uploadmusic" class="uploadbtnpic ">UploadMusic</button>
-
-                                                            </div>
-
+																																		<div class="layoutCenter">
+																																			<img class="addPicture" id="pictureUpload" src="img/plusblack.png">
+																																		</div>
+																																</div>
+																																<input type="file" name="fileToUpload" id="fileToUpload" placeholder="" style = "display:none">
+                                                                <button type="button" id="uploadmusic" class="uploadbtnpic">UploadMusic</button>
+                                                  </div>
                                         <div class="containerup">
                                                 <label><b>TITLE</b></label>
-                                                <input type="text" placeholder="Enter Title" name="unamesong" id="NamesongIput" required>
+                                                <input type="text" placeholder="Enter Title" name="musicName" id="NamesongIput" required>
                                                 <label><b>Artist</b></label>
-                                         <input type="text" placeholder="Enter Artist" name="ati" id="AtiIput" required>
+                                         				<input type="text" placeholder="Enter Artist" name="musicArtist" id="AtiIput" required>
+																								<label><b>Album Name</b></label>
+                                         				<input type="text" placeholder="Enter Album Name" name="musicAlbumName" id="albumNameIput" required>
                                                 <label><b>Moods</b></label>
                                          <div class="custom-select">
-                                                <select>
-                                                        <option value="0">Select Moods:</option>
+                                                <select name="moodsSelect" required>
+                                                        <option value="">Select Moods:</option>
                                                         <option value="1">Romance</option>
                                                         <option value="2">Chill</option>
                                                         <option value="3">Sadly</option>
                                                         <option value="4">Alone</option>
-
+																												<option value="5">Happy</option>
                                                 </select>
                                          </div>
 
                                          <label><b>Genres</b></label>
                                          <div class="custom-select">
-                                                 <select>
-                                                   <option value="0">Select Genres:</option>
+                                                 <select name="genresSelect" required>
+                                                   <option value="">Select Genres:</option>
                                                    <option value="1">Rock</option>
                                                    <option value="2">Pop</option>
                                                    <option value="3">Jazz</option>
                                                    <option value="4">R&B</option>
-
+																									 <option value="5">Indy</option>
+																									 <option value="6">Acoustic</option>
                                                  </select>
                                                </div>
-
-
                                         </div>
-
-
-
-
-
-
                                 </div>
-
-
-
                                     <div class="imgcontainersunmit">
-                                            <button type="submit" class="uploadbtn ">Submit</button>
+                                            <button type="button" class="uploadbtn" id="submitBtn">Submit</button>
                                     </div>
-
                     </form>
                 </div>
                 </div>

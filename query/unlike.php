@@ -18,7 +18,7 @@
 
   $music_id = $query_music_result['music_id'];
 
-  $query_statment = "DELETE FROM `like` WHERE user_id = '$user_id' AND  music_id = '$music_id';";
+  $query_statment = "DELETE FROM `like` WHERE user_id = $user_id AND  music_id = $music_id;";
 
   mysqli_query($connection, $query_statment);
 ?>

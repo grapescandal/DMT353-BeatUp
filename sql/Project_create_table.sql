@@ -42,8 +42,7 @@ create table `like`(
 );
 create table view(
 	user_id int not null,
-    music_id int not null,
-    view_datetime datetime
+    music_id int not null
 );
 create table play_list(
 	play_list_id int primary key auto_increment,
