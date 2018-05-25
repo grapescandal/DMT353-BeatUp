@@ -759,9 +759,25 @@ function Moods(){
     xhr.open("GET","Moods.php");
     xhr.onload = function(){
       clearScript();
-      window.location.hash = 'Categories';
       postMsg(xhr.responseText);
+      window.location.hash = 'Categories';
+      createCategoriesScript();
+
     };
+    xhr.onerror = function() {alert("error!");};
+    xhr.send();
+}
+
+function createCategoriesScript() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(evt) {
+      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var moodsScript = document.createElement("script");
+        moodsScript.src = "moods.js";
+        document.body.appendChild(moodsScript);
+      }
+    }
+    xhr.open("GET","moods.js");
     xhr.onerror = function() {alert("error!");};
     xhr.send();
 }

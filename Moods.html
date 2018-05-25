@@ -4,36 +4,36 @@
 <hr>
 <div class="layoutgrid">
     <div class="detail">
-        <img class="reclist" src="img/genres/rock-01.png">
+        <img class="reclist" src="img/genres/rock-01.png" music_genres="2">
         <p>Rock</p>
     </div>
     <div class="detail">
-          <img class="reclist" src="img/genres/pop-01.png">
+          <img class="reclist" src="img/genres/pop-01.png" music_genres="1">
         <p>Pop</p>
     </div>
     <div class="detail">
-        <img class="reclist" src="img/genres/jazz-01.png">
+        <img class="reclist" src="img/genres/jazz-01.png" music_genres="4">
         <p>Jazz</p>
     </div>
     <div class="detail">
-          <img class="reclist" src="img/genres/rb-01.png">
+          <img class="reclist" src="img/genres/rb-01.png" music_genres="3">
         <p>R&B</p>
     </div>
     <div class="detail">
-      <img class="reclist" src="img/mood/love-01.jpg">
+      <img class="reclist" src="img/mood/love-01.jpg" music_moods="2">
       <p>Romance</p>
   </div>
   <div class="detail">
-      <img class="reclist" src="img/mood/feeling happy-01.jpg">
-      <p>Chill</p>
+      <img class="reclist" src="img/mood/alone-01.jpg" music_moods="4">
+      <p>Relax</p>
   </div>
   <div class="detail">
-      <img class="reclist" src="img/mood/sadly2-01.png">
+      <img class="reclist" src="img/mood/sadly2-01.png" music_moods="1">
       <p>Sadly</p>
   </div>
   <div class="detail">
-      <img class="reclist" src="img/mood/alone-01.jpg">
-      <p>Alone</p>
+      <img class="reclist" src="img/mood/feeling happy-01.jpg" music_moods="3">
+      <p>Happy</p>
   </div>
 </div>
 
@@ -41,12 +41,12 @@
     <p id="headGenres">Rock</p>
     <hr>
 </div>
-<div class="layoutgrid">
-    <div class="detail">
-        <img class="reclist" src="img/Album/นอนได้แล้ว-Sleep-Now.jpg" alt="Music/นอนได้แล้ว - THE TOYS feat. ฟักกลิ้ง ฮีโร่.mp3"/>
+<div class="layoutgrid" id="categoriesContainer">
+    <div class="detail" id="template_categories" style = "display: none">
+        <img class="reclist" src="uploads/Album/นอนได้แล้ว-Sleep-Now.jpg" alt="uploads/Music/นอนได้แล้ว - THE TOYS feat. ฟักกลิ้ง ฮีโร่.mp3"/>
         <div class="btnADlayout">
             <div class="nameSong">
-                <p class="song">นอนได้แล้ว</p>
+                <p class="musicName">นอนได้แล้ว</p>
             </div>
             <button type="button" id="addToPlayListbtn"></button>
         </div>

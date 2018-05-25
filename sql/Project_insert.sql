@@ -56,13 +56,12 @@ insert into albums_detail
 (9,9);
 insert into `like`
 (user_id,music_id) values 
-(1, 4),
-(3, 5),
-(2, 3),
-(2, 4),
-(5, 4),
-(3, 5),
-(4, 8);
+(1,3),
+(2,1),
+(3,3),
+(4,4),
+(5,3),
+(5,1);
 insert into view
 (user_id,music_id) values
 (1,3),
@@ -122,3 +121,11 @@ SELECT  music.music_id, music.music_name, music.music_local, music.music_artist,
 select * from beat_up.music;
 select * from beat_up.albums;
 select * from beat_up.albums_detail;
+
+select * from moods;
+
+SELECT music.music_id, music_name,music_local,music_artist,picture_albums FROM music
+  left join albums_detail
+  on music.music_id = albums_detail.music_id
+  left join albums
+  on albums_detail.albums_id = albums.albums_id WHERE music_genres = 2 OR music_moods = 0;
