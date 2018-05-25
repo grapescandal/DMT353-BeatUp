@@ -64,6 +64,15 @@ var global_likeStatus = false;
 var musicPath = "";
 var picPath = "";
 
+$(document).ready(function(){
+  $("#searchBox").keydown(function(e){
+      if(e.keyCode === 13){
+        event.preventDefault();
+          searchMusic($("#searchBox").val());
+      }
+  });
+});
+
 var checkLogin = function(){
     //when retrieve user information call function onUserReceived
     var onUserReceived = function(userInformation) {
@@ -206,11 +215,16 @@ document.body.onkeydown = function(e) {
 }
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
+    var modalsearch = document.getElementById("modalsearch");
     if (event.target == modal) {
         modal.style.display = "none";
     }
     if (event.target == modal2) {
         modal2.style.display = "none";
+    }
+
+    if (event.target == modalsearch) {
+        modalsearch.style.display = "none";
     }
 }
 
@@ -530,7 +544,7 @@ function changeCurrentSong(songIndex){
 }
 
 function addToPlayList(element) {
-  increseView(global_user_id, element.getAttribute("music_id"), readChart);
+  increseView(global_user_id, element.getAttribute("music_id"));
   var index = playList.indexOf(element.alt);
   if(index < 0) {
     playList.push(element.alt);
@@ -597,6 +611,84 @@ function clearPlayListNav() {
   }
 }
 
+function searchMusic(searchValue) {
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(evt) {
+    if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      var result = JSON.parse(xhr.response);
+      createSearch(result);
+    }
+  }
+  xhr.open("GET","query/search.php?searchValue=" + searchValue);
+  xhr.onerror = function() {alert("error!");};
+  xhr.send();
+}
+
+function createSearch(result) {
+  clearSeacrh();
+  var divSearch = document.getElementById("modalsearch");
+  divSearch.style.display = "block";
+  var searchContainer = document.getElementsByTagName("tbody");
+  var resultLength = result.length;
+  for(var i = 0; i < resultLength; i++) {
+    var container = document.getElementById("template_search").cloneNode(true);
+    container.getElementsByClassName("reclisttable")[0].alt = "uploads/Music/" + result[i]["music_local"];
+    container.getElementsByClassName("reclisttable")[0].src = "uploads/Album/" + result[i]["picture_albums"];
+    container.getElementsByClassName("chartsMusicName")[0].innerHTML = result[i]["music_name"];
+    container.getElementsByClassName("artist")[0].innerHTML = result[i]["music_artist"];
+    container.getElementsByClassName("reclisttable")[0].setAttribute("music_id", result[i]["music_id"]);
+    container.getElementsByClassName("reclisttable")[0].setAttribute("music_name", result[i]["music_name"]);
+    container.style.display = "table-row";
+    container.getElementsByClassName("musicInfo")[0].addEventListener('click', addEventForSearch);
+    container.getElementsByClassName("chartsMusicName")[0].addEventListener('click', addEventForSearch);
+
+    //add to playlist
+    container.childNodes[9].addEventListener('click', function() {
+      addToPlayList(this.parentNode.getElementsByClassName("reclisttable")[0]);
+
+      if(!isPlayerShow) {
+        showPlayer("block");
+        isPlayerShow = true;
+      }
+    });
+
+    searchContainer[0].appendChild(container);
+  }
+}
+
+var clearSeacrh = function() {
+  var container = document.querySelectorAll("#template_search");
+
+  for (var i = 1; i < container.length; i++) {
+    container[i].parentNode.removeChild(container[i]);
+  }
+}
+
+function addEventForSearch() {
+  playList = clearPlayList();
+  songCover = clearSongCover();
+  musicNameList = clearMusicName();
+  clearPlayListNav();
+  addToPlayList(this.parentNode.getElementsByClassName("reclisttable")[0]);
+  currentSong = 0;
+  mytrack.src = playList[currentSong];
+  currentSongCover.src = songCover[currentSong];
+  playOrPause();
+
+  if(!isPlayerShow) {
+    showPlayer("block");
+    isPlayerShow = true;
+  }
+}
+
+function clearCharts() {
+  var container = document.querySelectorAll("#template_charts");
+
+  for (var i = 1; i < container.length; i++) {
+    container[i].parentNode.removeChild(container[i]);
+  }
+}
 //Advertise
 function carousel() {
     var i;
@@ -703,13 +795,13 @@ function like(user_id, song_id, callback) {
 }
 
 //view
-var increseView = function (user_id, song_id, callback) {
+var increseView = function (user_id, song_id) {
   if(user_id > 0) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(evt){
         if( xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200 ){
             if(window.location.hash.indexOf("Charts") > -1) {
-              callback();
+              readChart();
             }
         }
     }

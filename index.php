@@ -23,6 +23,8 @@
         <link rel="stylesheet" href="playlist.css" />
         <title>Beat up</title>
         <link rel="shortcut icon" href="img/sound-bars-pulse2.png" >
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     </head>
     <body>
         <nav class="nav">
@@ -35,11 +37,11 @@
             </a> -->
             <div class="search" >
                 <img class="icon" src="img/search.png"/>
-                <input type="text" placeholder="Search" />
+                <input type="text" id="searchBox" placeholder="Search" />
             </div>
 
          <div id="modalsearch" class="modalsearch">
-                <div class="modal-content4">
+                <div class="modal-content4  animate">
 
                     <table class"fontblack" id="searchTable">
                             <tr>
@@ -50,7 +52,7 @@
                                     <th class"fontblack"> ADD PLAYLIST </th>
 
                             </tr>
-                            <tr class="chart" id="template_search" style = "display:;">
+                            <tr class="searchFont" id="template_search" style = "display:none;">
                                             <td class="counterCell"></td>
                                             <td class="musicInfo"><img class="reclisttable" src="uploads/Album/wan-01.png" alt="uploads/Music/ระหว่างที่เธอจะจากไป -  Wan Soloist feat.Moving and Cut.mp3" music_id="9"/></td>
                                             <td class="chartsMusicName"><p>ระหว่างที่เธอจะจากไป</p></td>

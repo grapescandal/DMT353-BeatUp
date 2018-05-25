@@ -62,30 +62,6 @@ function addEventForChart() {
   }
 }
 
-function addToPlayList(element) {
-  increseView(global_user_id, element.getAttribute("music_id"), readChart);
-  var index = playList.indexOf(element.alt);
-  if(index < 0) {
-    playList.push(element.alt);
-    songCover.push(element.src);
-    musicIdList.push(element.getAttribute("music_id"));
-    musicNameList.push(element.getAttribute("music_name"));
-
-    addToPlaylistNav(playList);
-  }
-
-  if(playList.length < 2 && index < 0) {
-    currentSong = 0;
-    mytrack.src = playList[currentSong];
-    currentSongCover.src = songCover[currentSong];
-    currentSongCover.setAttribute("currentMusic_id", element.getAttribute("music_id"));
-  }
-  currentSongName.text = musicNameList[currentSong];
-
-  if(global_user_id > 0) {
-    checkLike(global_user_id, currentSongCover.getAttribute("currentMusic_id"));
-  }
-}
 
 function clearCharts() {
   var container = document.querySelectorAll("#template_charts");

@@ -129,3 +129,10 @@ SELECT music.music_id, music_name,music_local,music_artist,picture_albums FROM m
   on music.music_id = albums_detail.music_id
   left join albums
   on albums_detail.albums_id = albums.albums_id WHERE music_genres = 2 OR music_moods = 0;
+
+select music_name,music_local,music_artist,picture_albums FROM music
+left join albums_detail
+on music.music_id = albums_detail.music_id
+left join albums
+on albums_detail.albums_id = albums.albums_id
+where music_name LIKE '%$shonichi%' OR music_artist LIKE '%$input%' OR albums_name LIKE '%$input%';
